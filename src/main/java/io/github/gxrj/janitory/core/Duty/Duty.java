@@ -1,6 +1,7 @@
 package io.github.gxrj.janitory.core.Duty;
 
 import io.github.gxrj.janitory.core.Dept.Dept;
+import io.github.gxrj.janitory.core.DutyGroup.DutyGroup;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
