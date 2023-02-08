@@ -1,4 +1,4 @@
-package io.github.gxrj.janitory.core.Citizen;
+package io.github.gxrj.janitory.core.Category;
 
 import java.util.UUID;
 
@@ -9,17 +9,13 @@ import jakarta.persistence.Id;
 import lombok.Data;
 
 @Data
-
-public class Citizen {
-
+public class Category {
+    
     @Id
     @Column( columnDefinition = "uuid not null" )
     @GeneratedValue( strategy = GenerationType.AUTO )
     private UUID id;
-    
-    @Column( name = "nome", length = 60, nullable = false )
+
+    @Column( name = "descricao", length = 60, nullable = false )
     private String name;
-    
-    @Column( length = 60, unique = true, nullable = false )
-    private String email;
 }
