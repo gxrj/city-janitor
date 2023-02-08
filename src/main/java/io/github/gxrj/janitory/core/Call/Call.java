@@ -1,22 +1,18 @@
 package io.github.gxrj.janitory.core.Call;
 
-import io.github.gxrj.janitory.core.Action.Action;
 import io.github.gxrj.janitory.core.Address.Address;
 import io.github.gxrj.janitory.core.Citizen.Citizen;
 import io.github.gxrj.janitory.core.Dept.Dept;
 import io.github.gxrj.janitory.core.Duty.Duty;
 
 import java.util.UUID;
-import java.util.List;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 
 import lombok.Data;
 
@@ -43,12 +39,4 @@ public class Call {
 
     @Column( name = "descricao" )
     private String description;
-
-    @OneToMany( 
-        cascade = CascadeType.ALL,
-        mappedBy = "description",
-        targetEntity = Action.class,
-        orphanRemoval = true 
-    )
-    private List<Action> actions;
 }

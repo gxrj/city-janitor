@@ -7,6 +7,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
 import lombok.Data;
@@ -23,10 +24,10 @@ public class Duty {
     private String name;
 
     @ManyToOne
-    @Column( name = "categoria" )
+    @JoinColumn( name = "categoria" )
     private DutyGroup group;
 
     @ManyToOne
-    @Column( name = "secreatria" )
+    @JoinColumn( name = "secreatria" )
     private Dept dept;
 }

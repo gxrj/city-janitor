@@ -4,12 +4,11 @@ import java.io.Serializable;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
+import lombok.Builder;
+import lombok.Data;
 
-import lombok.Getter;
-import lombok.Setter;
-
-@Getter @Setter
-
+@Data
+@Builder
 @Embeddable
 public class Address implements Serializable {
  
@@ -17,7 +16,7 @@ public class Address implements Serializable {
     private int zipCode;
 
     @Column( name = "bairro" )
-    private String district;
+    private District district;
 
     @Column( name = "logradouro" )
     private String pubPlace;
