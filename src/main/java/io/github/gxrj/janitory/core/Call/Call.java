@@ -25,6 +25,9 @@ public class Call {
     @GeneratedValue( strategy = GenerationType.AUTO )
     private UUID id;
 
+    @Column
+    private Status status;
+
     @Column( name = "usuario" )
     private Citizen author;
 

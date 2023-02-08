@@ -7,7 +7,6 @@ import io.github.gxrj.janitory.core.PubAgent.PubAgent;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -28,11 +27,14 @@ public class Action {
     @Column( name = "descricao", nullable = false )
     private String description;
 
-    @ManyToOne( fetch = FetchType.LAZY )
+    @ManyToOne
     @JoinColumn( name = "ocorrencia" )
     private Call call;
 
     @ManyToOne
     @JoinColumn( name = "autor" )
     private PubAgent agent;
+    
+    @Column( name = "resposta_cidadao" )
+    private String userReply;
 }
