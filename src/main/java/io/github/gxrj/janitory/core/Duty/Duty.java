@@ -1,7 +1,5 @@
 package io.github.gxrj.janitory.core.Duty;
 
-import java.util.UUID;
-
 import io.github.gxrj.janitory.core.Dept.Dept;
 
 import jakarta.persistence.Column;
@@ -18,9 +16,8 @@ import lombok.Data;
 public class Duty {
     
     @Id
-    @Column( columnDefinition = "uuid not null" )
     @GeneratedValue( strategy = GenerationType.AUTO )
-    private UUID id;
+    private Long id;
 
     @Column( name = "descricao", length = 60, nullable = false )
     private String name;
