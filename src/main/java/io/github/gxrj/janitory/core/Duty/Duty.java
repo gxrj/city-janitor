@@ -1,15 +1,21 @@
-package io.github.gxrj.janitory.core.Category;
+package io.github.gxrj.janitory.core.Duty;
 
 import java.util.UUID;
 
+import io.github.gxrj.janitory.core.Dept.Dept;
+
 import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+
 import lombok.Data;
 
 @Data
-public class Category {
+@Entity( name = "Servico" )
+public class Duty {
     
     @Id
     @Column( columnDefinition = "uuid not null" )
@@ -18,4 +24,12 @@ public class Category {
 
     @Column( name = "descricao", length = 60, nullable = false )
     private String name;
+
+    @ManyToOne
+    @Column( name = "categoria" )
+    private DutyGroup group;
+
+    @ManyToOne
+    @Column( name = "secreatria" )
+    private Dept dept;
 }
