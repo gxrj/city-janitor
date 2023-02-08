@@ -9,6 +9,7 @@ import io.github.gxrj.janitory.core.Duty.Duty;
 import java.util.UUID;
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
@@ -43,6 +44,11 @@ public class Call {
     @Column( name = "descricao" )
     private String description;
 
-    @OneToMany
+    @OneToMany( 
+        cascade = CascadeType.ALL,
+        mappedBy = "description",
+        targetEntity = Action.class,
+        orphanRemoval = true 
+    )
     private List<Action> actions;
 }

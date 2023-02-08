@@ -7,6 +7,7 @@ import io.github.gxrj.janitory.core.PubAgent.PubAgent;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -24,7 +25,10 @@ public class Action {
     @GeneratedValue( strategy = GenerationType.AUTO )
     private UUID id;
 
-    @ManyToOne
+    @Column( name = "descricao", nullable = false )
+    private String description;
+
+    @ManyToOne( fetch = FetchType.LAZY )
     @JoinColumn( name = "ocorrencia" )
     private Call call;
 
