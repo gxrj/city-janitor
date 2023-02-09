@@ -24,21 +24,13 @@ public class PubAgentController {
 
         try{
             var entity = PubAgentDto.desserialize( dto, deptService );
+            // To do: encrypt password
             agentService.createOrUpdate( entity );
         }
         catch( Exception ex ) {
-            return PlainJson.builder()
-                        .append( 
-                            "error", 
-                            ex.getMessage() 
-                        )
-                        .build();
+            return PlainJson.builder().append( "error", ex.getMessage() ).build();
         }
 
-        return PlainJson.builder()
-                    .append( 
-                        "message", 
-                        "gravado com sucesso!"
-                    ).build();
+        return PlainJson.builder().append( "message", "gravado com sucesso!").build();
     }
 }
