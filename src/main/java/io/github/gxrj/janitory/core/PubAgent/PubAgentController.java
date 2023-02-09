@@ -19,7 +19,7 @@ public class PubAgentController {
     @Autowired
     private PubAgentService agentService;
 
-    @PostMapping( "/agent/v1/edition" )
+    @PostMapping( "/agent/account_edition" )
     public String update() {
         // To do: Get logged user
         // To do: Get new data from request
@@ -28,7 +28,7 @@ public class PubAgentController {
         return PlainJson.builder().append( "message", "Dados atualizados!" ).build();
     }
 
-    @PostMapping( "/agent/v1/new_password" )
+    @PostMapping( "/agent/account_edition/new_password" )
     public String resetPassword() {
         // To do: Get logged user
         // To do: Get new password from request
@@ -37,7 +37,7 @@ public class PubAgentController {
         return PlainJson.builder().append( "message", "Senha alterada!" ).build();
     }
     
-    @PostMapping( "/manager/v1/new_agent" )
+    @PostMapping( "/manager/agent_edition/new_agent" )
     public String createAgent( @RequestBody PubAgentDto dto ) {
 
         try{
@@ -58,7 +58,7 @@ public class PubAgentController {
         }
     }
 
-    @PostMapping( "/manager/v1/agent/new_password" )
+    @PostMapping( "/manager/agent_edition/new_password" )
     public String resetPassword( @RequestBody PubAgentDto dto ) {
 
         var entity = agentService.findByLogin( dto.getLogin() );
