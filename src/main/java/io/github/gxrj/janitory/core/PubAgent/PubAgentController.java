@@ -18,6 +18,14 @@ public class PubAgentController {
 
     @Autowired
     private PubAgentService agentService;
+
+    @PostMapping( "/agent/v1/new_password" )
+    public String resetPassword() {
+        // To do: Get logged user
+        // To do: udpdate user password
+        
+        return PlainJson.builder().append( "message", "Senha alterada!" ).build();
+    }
     
     @PostMapping( "/manager/v1/new_agent" )
     public String createAgent( @RequestBody PubAgentDto dto ) {
