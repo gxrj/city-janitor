@@ -11,10 +11,9 @@ import io.github.gxrj.janitory.core.Dept.DeptService;
 import jakarta.validation.constraints.NotEmpty;
 
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import lombok.Data;
 
-@AllArgsConstructor
-@NoArgsConstructor
+@Data @AllArgsConstructor
 
 @JsonIgnoreProperties(
     value = "password",
