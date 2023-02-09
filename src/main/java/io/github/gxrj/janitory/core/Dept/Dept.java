@@ -9,6 +9,9 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
 
 @Data
 @Entity( name = "Secretaria" )

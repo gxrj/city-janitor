@@ -4,7 +4,6 @@ public class PlainJson {
  
     private String plainJson;
 
-
     private PlainJson() {
         plainJson = "{ ";
     }
