@@ -13,6 +13,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 import lombok.Data;
 
@@ -28,7 +30,8 @@ public class Call {
     @Column
     private Status status;
 
-    @Column( name = "usuario" )
+    @ManyToOne
+    @JoinColumn( name = "usuario" )
     private Citizen author;
 
     @Embedded
@@ -37,7 +40,8 @@ public class Call {
     @Column( name = "destino" )
     private Dept destination;
 
-    @Column( name = "servico" )
+    @ManyToOne
+    @JoinColumn( name = "servico" )
     private Duty duty;
 
     @Column( name = "descricao" )

@@ -12,9 +12,11 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
+import lombok.Builder;
 import lombok.Data;
 
 @Data
+@Builder
 @Entity( name = "Funcionario" )
 public class PubAgent {
     

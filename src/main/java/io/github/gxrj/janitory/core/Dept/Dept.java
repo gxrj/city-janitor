@@ -20,4 +20,8 @@ public class Dept implements Serializable {
 
     @Column( name = "nome", length = 40, nullable = false )
     private String name;
+
+    public Dept( String name ) {
+        this.name = name;
+    }
 }
