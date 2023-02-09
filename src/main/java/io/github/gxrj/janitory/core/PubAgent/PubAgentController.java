@@ -22,8 +22,9 @@ public class PubAgentController {
     @PostMapping( "/agent/v1/new_password" )
     public String resetPassword() {
         // To do: Get logged user
+        // To do: Get new password from request
         // To do: udpdate user password
-        
+
         return PlainJson.builder().append( "message", "Senha alterada!" ).build();
     }
     
