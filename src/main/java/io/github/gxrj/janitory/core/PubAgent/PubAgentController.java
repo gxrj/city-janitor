@@ -19,6 +19,15 @@ public class PubAgentController {
     @Autowired
     private PubAgentService agentService;
 
+    @PostMapping( "/agent/v1/edition" )
+    public String update() {
+        // To do: Get logged user
+        // To do: Get new data from request
+        // To do: udpdate user data
+
+        return PlainJson.builder().append( "message", "Dados atualizados!" ).build();
+    }
+
     @PostMapping( "/agent/v1/new_password" )
     public String resetPassword() {
         // To do: Get logged user
