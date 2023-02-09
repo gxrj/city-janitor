@@ -22,7 +22,6 @@ public class DeptController {
         return deptService.list();
     }
 
-
     @PostMapping( "/manager/dept/new" )
     public String create( @RequestBody DeptDto dept ) {
         deptService.createOrUpdate( new Dept( dept.name ) );
