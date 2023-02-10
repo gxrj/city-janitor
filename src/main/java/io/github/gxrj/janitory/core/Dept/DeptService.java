@@ -22,4 +22,8 @@ public class DeptService {
     public List<Dept> list() {
         return repository.findAll();
     }
+
+    public void delete( Dept entity ) {
+        repository.delete( entity );
+    }
 }
