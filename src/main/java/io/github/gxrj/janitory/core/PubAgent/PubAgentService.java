@@ -19,6 +19,10 @@ public class PubAgentService {
         repository.save( entity );
     }
 
+    public List<PubAgent> listAll() {
+        return repository.findAll();
+    }
+
     public List<PubAgent> listByDeptName( String deptName ) {
         return repository.findByDept_name( deptName );
     }

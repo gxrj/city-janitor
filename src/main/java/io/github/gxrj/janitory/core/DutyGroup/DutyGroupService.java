@@ -11,7 +11,7 @@ public class DutyGroupService {
     @Autowired
     private DutyGroupRepository repository;
 
-    public List<DutyGroup> list() {
+    public List<DutyGroup> listAll() {
         return repository.findAll();
     }
 

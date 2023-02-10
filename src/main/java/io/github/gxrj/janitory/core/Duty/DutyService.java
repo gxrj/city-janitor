@@ -19,6 +19,10 @@ public class DutyService {
         return repository.findByName( name ).orElse( null );
     }
 
+    public List<Duty> listAll() {
+        return repository.findAll();
+    }
+
     public List<Duty> listByDeptName( String deptName ) {
         return repository.findByDept_Name( deptName );
     }

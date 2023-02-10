@@ -1,13 +1,16 @@
 package io.github.gxrj.janitory.core.PubAgent;
 
+import io.github.gxrj.janitory.core.Dept.DeptService;
+import io.github.gxrj.janitory.utils.PlainJson;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import io.github.gxrj.janitory.core.Dept.DeptService;
-import io.github.gxrj.janitory.utils.PlainJson;
 
 @RestController
 @RequestMapping( consumes = "application/json", produces = "application/json" )
@@ -18,6 +21,16 @@ public class PubAgentController {
 
     @Autowired
     private PubAgentService agentService;
+
+    @GetMapping( "/manager/agent/all" )
+    public List<PubAgent> listAll() {
+        return agentService.listAll();
+    }
+
+    @PostMapping( "/manager/agent/all_by_deptartment" )
+    public List<PubAgent> listByDept( String deptName ) {
+        return agentService.listByDeptName( deptName );
+    }
 
     @PostMapping( "/agent/account_edition" )
     public String update() {
