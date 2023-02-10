@@ -11,7 +11,7 @@ public interface CallRepository extends JpaRepository<Call, UUID> {
     List<Call> findByDuty_Name( String dutyName );
     List<Call> findByAddress_ZipCode( String zipCode );
     List<Call> findByAddress_PubPlace( String pubPlace );
-    List<Call> findByAddress_District( String district );
+    List<Call> findByAddress_District_Name( String district );
     List<Call> findByDestination_Name( String deptName );
     List<Call> findByAuthor_Email( String email );
 }
