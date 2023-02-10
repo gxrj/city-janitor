@@ -1,7 +1,5 @@
 package io.github.gxrj.janitory.core.Action;
 
-import io.github.gxrj.janitory.core.Call.Call;
-
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -12,5 +10,5 @@ public interface ActionRepository extends JpaRepository<Action, UUID> {
 
     Optional<Action> findByProtocol( String protocol ); 
     List<Action> findByAgent_Login( String agentLogin );
-    List<Action> findByCall( Call call );
+    List<Action> findByCall_Protocol( String callProtocol );
 }

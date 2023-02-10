@@ -46,4 +46,7 @@ public class Call {
 
     @Column( name = "descricao" )
     private String description;
+
+    @Column( name = "protocolo", unique = true, nullable = false )
+    private String protocol;
 }
