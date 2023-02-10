@@ -24,6 +24,9 @@ public class Action {
     @GeneratedValue( strategy = GenerationType.AUTO )
     private UUID id;
 
+    @Column( name = "protocolo", nullable = false, unique =true )
+    private String protocol;
+
     @Column( name = "descricao", nullable = false )
     private String description;
 
