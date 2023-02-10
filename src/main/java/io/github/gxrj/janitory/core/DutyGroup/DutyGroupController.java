@@ -23,9 +23,15 @@ public class DutyGroupController {
         return groupService.list();
     }
 
-    @PostMapping( "/manager/categories/new" )
-    public String create( @RequestBody DutyGroup group ) {
-        
-        return PlainJson.builder().append( "message", "Categoria criada com sucesso!" ).build();
+    @PostMapping( { "/manager/category/new", "/manager/category/edition" } )
+    public String createOrUpdate( @RequestBody DutyGroup group ) {
+        groupService.createOrUpdate( group );
+        return PlainJson.builder().append( "message", "Categoria registarda com sucesso!" ).build();
+    }
+
+    @PostMapping( "/manager/category/deletion" )
+    public String delete( DutyGroup entity ) {
+        groupService.delete( entity );
+        return PlainJson.builder().append( "message", "Deletado com sucesso!" ).build();
     }
 }

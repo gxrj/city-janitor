@@ -1,5 +1,6 @@
 package io.github.gxrj.janitory.core.Duty;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,9 +13,12 @@ import io.github.gxrj.janitory.utils.PlainJson;
 @RequestMapping( consumes = "application/json", produces = "application/json" )
 public class DutyController {
     
-    @PostMapping( "/manager/duty/new" )
-    public String create( @RequestBody Duty duty ) {
+    @Autowired
+    private DutyService dutyService;
 
-        return PlainJson.builder().append( "message", "CServico criado com sucesso!" ).build();
+    @PostMapping( { "/manager/duty/new", "/manager/duty/edition" } )
+    public String create( @RequestBody Duty duty ) {
+        dutyService.createOrUpdate( duty );
+        return PlainJson.builder().append( "message", "Servico criado com sucesso!" ).build();
     }
 }
