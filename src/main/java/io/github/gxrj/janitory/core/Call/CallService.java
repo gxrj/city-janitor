@@ -19,6 +19,10 @@ public class CallService {
         repository.delete( entity );
     }
 
+    public Call findByProtocol( String protocol ) {
+        return repository.findByProtocol( protocol ).orElse( null );
+    }
+
     public List<Call> listByStatus( Status status ) {
         return repository.findByStatus( status );
     }

@@ -1,12 +1,15 @@
 package io.github.gxrj.janitory.core.Call;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface CallRepository extends JpaRepository<Call, UUID> { 
     
+    Optional<Call> findByProtocol( String protocol );
+
     List<Call> findByStatus( Status status );
     List<Call> findByDuty_Name( String dutyName );
     List<Call> findByAddress_ZipCode( String zipCode );
