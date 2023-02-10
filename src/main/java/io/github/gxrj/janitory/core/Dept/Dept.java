@@ -8,10 +8,10 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
+import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
-@NoArgsConstructor
+@Builder
 
 @Data
 @Entity( name = "Secretaria" )
@@ -23,8 +23,4 @@ public class Dept implements Serializable {
 
     @Column( name = "nome", length = 40, nullable = false )
     private String name;
-
-    public Dept( String name ) {
-        this.name = name;
-    }
 }

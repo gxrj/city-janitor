@@ -24,7 +24,7 @@ public class DeptController {
 
     @PostMapping( "/manager/dept/new" )
     public String create( @RequestBody DeptDto dept ) {
-        deptService.createOrUpdate( new Dept( dept.name ) );
+        deptService.createOrUpdate( Dept.builder().name( dept.name ).build() );
         return PlainJson.builder().append( "message", "Gravado com sucesso!" ).build();
     }
 
