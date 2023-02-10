@@ -12,8 +12,8 @@ import lombok.Data;
 @Embeddable
 public class Address implements Serializable {
  
-    @Column( name = "cep" )
-    private int zipCode;
+    @Column( name = "cep", length = 8 )
+    private String zipCode;
 
     @Column( name = "bairro" )
     private District district;
