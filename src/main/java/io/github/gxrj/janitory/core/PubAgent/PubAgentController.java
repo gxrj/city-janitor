@@ -28,7 +28,7 @@ public class PubAgentController {
     }
 
     @PostMapping( "/manager/agent/all_by_deptartment" )
-    public List<PubAgent> listByDept( String deptName ) {
+    public List<PubAgent> listByDeptName( String deptName ) {
         return agentService.listByDeptName( deptName );
     }
 
