@@ -10,17 +10,21 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.NotBlank;
+
+import java.io.Serializable;
 
 import lombok.Data;
 
 @Data
 @Entity( name = "Servico" )
-public class Duty {
+public class Duty implements Serializable {
     
     @Id
     @GeneratedValue( strategy = GenerationType.AUTO )
     private Long id;
 
+    @NotBlank
     @Column( name = "descricao", length = 60, nullable = false )
     private String name;
 
