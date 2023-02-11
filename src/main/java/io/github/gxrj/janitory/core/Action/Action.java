@@ -42,6 +42,6 @@ public class Action {
     @JoinColumn( name = "ocorrencia", nullable = false )
     private Call call;
 
-    @Column( name = "protocolo", nullable = false, unique =true )
+    @Column( name = "protocolo", nullable = false, unique = true )
     private String protocol;
 }
