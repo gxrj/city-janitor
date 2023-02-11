@@ -1,5 +1,6 @@
 package io.github.gxrj.janitory.core.Action;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,5 +26,13 @@ public class ActionService {
 
     public Action findByProtocol( String protocol ) {
         return repository.findByProtocol( protocol ).orElse( null );
+    }
+
+    public List<Action> listIntervalByDept( LocalDateTime start, LocalDateTime end, String deptName ) {
+        return repository.searchByDeptBetween( start, end, deptName );
+    }
+
+    public List<Action> listIntervalByAgent( LocalDateTime start, LocalDateTime end, String agentLogin ) {
+        return repository.searchByAgentBetween( start, end, agentLogin );
     }
 }

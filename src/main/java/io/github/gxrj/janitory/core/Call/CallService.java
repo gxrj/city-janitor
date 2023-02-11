@@ -1,5 +1,6 @@
 package io.github.gxrj.janitory.core.Call;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,5 +50,9 @@ public class CallService {
 
     public List<Call> listByPublicPlace( String pubPlace ) {
         return repository.findByAddress_PubPlace( pubPlace );
+    }
+
+    public List<Call> listIntervalByDept( LocalDateTime start, LocalDateTime end, String deptName ) {
+        return repository.searchByDestinationBetween( start, end, deptName );
     }
 }

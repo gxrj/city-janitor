@@ -19,5 +19,5 @@ public interface ActionRepository extends JpaRepository<Action, UUID> {
     List<Action> searchByAgentBetween( LocalDateTime start, LocalDateTime end, String agentLogin );
 
     @Query( "select a from Atendimento a where a.creationDate between ?1 and ?2 and a.call.destination.name = ?3" )
-    List<Action> searchDeptBetween( LocalDateTime start, LocalDateTime end, String agentDeptName );
+    List<Action> searchByDeptBetween( LocalDateTime start, LocalDateTime end, String agentDeptName );
 }
