@@ -24,20 +24,20 @@ public class Action {
     @GeneratedValue( strategy = GenerationType.AUTO )
     private UUID id;
 
-    @Column( name = "protocolo", nullable = false, unique =true )
-    private String protocol;
+    @Column( name = "resposta_cidadao" )
+    private String userReply;
 
     @Column( name = "descricao", nullable = false )
     private String description;
 
     @ManyToOne
-    @JoinColumn( name = "ocorrencia" )
-    private Call call;
+    @JoinColumn( name = "autor", nullable = false )
+    private PubAgent agent;
 
     @ManyToOne
-    @JoinColumn( name = "autor" )
-    private PubAgent agent;
-    
-    @Column( name = "resposta_cidadao" )
-    private String userReply;
+    @JoinColumn( name = "ocorrencia", nullable = false )
+    private Call call;
+
+    @Column( name = "protocolo", nullable = false, unique =true )
+    private String protocol;
 }

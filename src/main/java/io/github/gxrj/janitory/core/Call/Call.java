@@ -31,17 +31,17 @@ public class Call {
     private Status status;
 
     @ManyToOne
-    @JoinColumn( name = "usuario" )
+    @JoinColumn( name = "usuario", nullable = true )
     private Citizen author;
 
     @Embedded
     private Address address;
 
-    @Column( name = "destino" )
+    @Column( name = "destino", nullable = false )
     private Dept destination;
 
     @ManyToOne
-    @JoinColumn( name = "servico" )
+    @JoinColumn( name = "servico", nullable = false )
     private Duty duty;
 
     @Column( name = "descricao" )
