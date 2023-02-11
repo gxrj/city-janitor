@@ -13,6 +13,8 @@ public interface ActionRepository extends JpaRepository<Action, UUID> {
     Optional<Action> findByProtocol( String protocol ); 
     List<Action> findByAgent_Login( String agentLogin );
     List<Action> findByCall_Protocol( String callProtocol );
+
+
     List<Action> findByCreationDateBetweenAndfindByAgent_Login( 
                                       LocalDateTime start, LocalDateTime end, String agentLogin );
     List<Action> findByCreationDateBetweenAndfindByAgent_Dept_Name( 
