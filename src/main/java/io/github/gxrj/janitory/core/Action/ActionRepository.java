@@ -7,6 +7,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 public interface ActionRepository extends JpaRepository<Action, UUID> {
 
@@ -14,10 +15,10 @@ public interface ActionRepository extends JpaRepository<Action, UUID> {
     List<Action> findByAgent_Login( String agentLogin );
     List<Action> findByCall_Protocol( String callProtocol );
 
+    @Query( "select a from Action where a.creationDate between ?1 and ?2 where a.agent.login = ?3" )
+    List<Action> searchByAgentBetween( LocalDateTime start, LocalDateTime end, String agentLogin );
 
-    List<Action> findByCreationDateBetweenAndfindByAgent_Login( 
-                                      LocalDateTime start, LocalDateTime end, String agentLogin );
-    List<Action> findByCreationDateBetweenAndfindByAgent_Dept_Name( 
-                                      LocalDateTime start, LocalDateTime end, String agentDeptName );
+    @Query( "select a from Action where a.creationDate between ?1 and ?2 where a.call.destination.name = ?3" )
+    List<Action> searchDeptBetween( LocalDateTime start, LocalDateTime end, String agentDeptName );
 
 }
