@@ -1,5 +1,6 @@
 package io.github.gxrj.janitory.core.Action;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 import io.github.gxrj.janitory.core.Call.Call;
@@ -23,6 +24,9 @@ public class Action {
     @Column( columnDefinition = "uuid not null" )
     @GeneratedValue( strategy = GenerationType.AUTO )
     private UUID id;
+
+    @Column( name="data_criacao" )
+    private LocalDateTime creationDate;
 
     @Column( name = "resposta_cidadao" )
     private String userReply;

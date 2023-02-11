@@ -1,5 +1,6 @@
 package io.github.gxrj.janitory.core.Call;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -17,4 +18,7 @@ public interface CallRepository extends JpaRepository<Call, UUID> {
     List<Call> findByAddress_District_Name( String district );
     List<Call> findByDestination_Name( String deptName );
     List<Call> findByAuthor_Email( String email );
+
+    List<Call> findByCreationDateBetweenAndFindByDestionation_Name( 
+                            LocalDateTime start, LocalDateTime end, String destinationName );
 }

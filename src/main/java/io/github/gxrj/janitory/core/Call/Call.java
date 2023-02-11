@@ -5,6 +5,7 @@ import io.github.gxrj.janitory.core.Citizen.Citizen;
 import io.github.gxrj.janitory.core.Dept.Dept;
 import io.github.gxrj.janitory.core.Duty.Duty;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 import jakarta.persistence.Column;
@@ -29,6 +30,9 @@ public class Call {
 
     @Column
     private Status status;
+
+    @Column( name="data_criacao" )
+    private LocalDateTime creationDate;
 
     @ManyToOne
     @JoinColumn( name = "usuario", nullable = true )
