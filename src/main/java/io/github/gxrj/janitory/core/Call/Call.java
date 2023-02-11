@@ -20,7 +20,7 @@ import jakarta.persistence.ManyToOne;
 import lombok.Data;
 
 @Data
-@Entity( name = "Ocorrencia" ) /*Watch out changing entity name changes jpql "table" naming in queries*/
+@Entity( name = "Ocorrencia" ) /*Watch out! Changing entity name changes jpql "table" naming in queries*/
 public class Call {
  
     @Id
