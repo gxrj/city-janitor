@@ -15,11 +15,9 @@ public interface ActionRepository extends JpaRepository<Action, UUID> {
     List<Action> findByAgent_Login( String agentLogin );
     List<Action> findByCall_Protocol( String callProtocol );
 
-    //@Query( "select a from Action where a.creationDate between ?1 and ?2 and a.agent.login = ?3" )
-    @Query( "select a from Atendimento where a.creationDate between ?1 and ?2" )
-    List<Action> searchByAgentBetween( LocalDateTime start, LocalDateTime end );
+    @Query( "select a from Atendimento a where a.creationDate between ?1 and ?2 and a.agent.login = ?3" )
+    List<Action> searchByAgentBetween( LocalDateTime start, LocalDateTime end, String agentLogin );
 
-    //@Query( "select a from Action where a.creationDate between ?1 and ?2 and a.call.destination.name = ?3" )
-    /*@Query( "select a from Action where a.creationDate between ?1 and ?2" )
-    List<Action> searchDeptBetween( LocalDateTime start, LocalDateTime end, String agentDeptName );*/
+    @Query( "select a from Atendimento a where a.creationDate between ?1 and ?2 and a.call.destination.name = ?3" )
+    List<Action> searchDeptBetween( LocalDateTime start, LocalDateTime end, String agentDeptName );
 }

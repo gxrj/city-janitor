@@ -20,7 +20,7 @@ import jakarta.persistence.ManyToOne;
 import lombok.Data;
 
 @Data
-@Entity( name = "Ocorrencia" )
+@Entity( name = "Ocorrencia" ) /*Watch out changing entity name changes jpql "table" naming in queries*/
 public class Call {
  
     @Id
@@ -41,7 +41,8 @@ public class Call {
     @Embedded
     private Address address;
 
-    @Column( name = "destino", nullable = false )
+    @ManyToOne
+    @JoinColumn( name = "destino", nullable = false )
     private Dept destination;
 
     @ManyToOne

@@ -20,8 +20,7 @@ public interface CallRepository extends JpaRepository<Call, UUID> {
     List<Call> findByDestination_Name( String deptName );
     List<Call> findByAuthor_Email( String email );
 
-    //@Query( "select c from Call where c.creationDate between ?1 and ?2 and c.destination.name = ?3" )
-    /*@Query( "select c from Call where c.creationDate between ?1 and ?2" )
+    @Query( "select o from Ocorrencia o where o.creationDate between ?1 and ?2 and o.destination.name = ?3" )
     List<Call> searchByDestionationBetween( 
-                            LocalDateTime start, LocalDateTime end, String deptName );*/
+                            LocalDateTime start, LocalDateTime end, String deptName );
 }

@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import lombok.Builder;
 import lombok.Data;
 
@@ -15,7 +17,8 @@ public class Address implements Serializable {
     @Column( name = "cep", length = 8 )
     private String zipCode;
 
-    @Column( name = "bairro" )
+    @ManyToOne
+    @JoinColumn( name = "bairro" )
     private District district;
 
     @Column( name = "logradouro" )
