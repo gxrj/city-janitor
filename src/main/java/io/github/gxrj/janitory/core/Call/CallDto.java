@@ -5,7 +5,6 @@ import io.github.gxrj.janitory.core.Dept.Dept;
 import io.github.gxrj.janitory.core.Duty.Duty;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -17,7 +16,7 @@ public class CallDto implements Serializable {
     String protocol;
     String description;
     String authorEmail;
-    LocalDateTime createdAt;
+    String createdAt;
     Address address;
     Dept destination;
     Duty duty;
