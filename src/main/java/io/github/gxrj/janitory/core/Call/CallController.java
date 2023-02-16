@@ -21,7 +21,6 @@ public class CallController {
     @Autowired
     private CitizenService userService;
 
-
     @PostMapping( "/anonymous/call/new" )
     public String create( @RequestBody CallDto dto ) {
 
