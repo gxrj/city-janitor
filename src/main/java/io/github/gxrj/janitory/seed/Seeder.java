@@ -5,7 +5,7 @@ import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
 @Component
-public class TableSeeder {
+public class Seeder {
 
     @EventListener
     public void seed( ContextRefreshedEvent event ) {
