@@ -4,4 +4,6 @@ import java.io.Serializable;
 
 public class ActionDto implements Serializable {
     
+    String protocol;
+    String callProtocol;
 }
