@@ -7,12 +7,11 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
 
-import lombok.Builder;
-
 import java.io.Serializable;
 
-@Builder
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor
 @Entity( name = "GrupoServico" )
 public class DutyGroup implements Serializable {
     

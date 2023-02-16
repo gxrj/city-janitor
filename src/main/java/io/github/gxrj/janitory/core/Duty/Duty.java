@@ -15,8 +15,10 @@ import jakarta.validation.constraints.NotBlank;
 import java.io.Serializable;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
 @Entity( name = "Servico" )
 public class Duty implements Serializable {
     
