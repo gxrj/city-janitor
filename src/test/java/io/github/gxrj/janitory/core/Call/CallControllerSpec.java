@@ -24,7 +24,7 @@ public class CallControllerSpec {
                         \"pub_place\": \"rua a\",
                         \"reference\": ""
                     },
-                    \"dept\" : {
+                    \"destination\" : {
                         \"id\": 1,
                         \"name\" : \"Secretaria Adjunta de Saneamento\"
                     },
