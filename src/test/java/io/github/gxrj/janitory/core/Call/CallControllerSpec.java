@@ -17,7 +17,7 @@ public class CallControllerSpec {
         var body = """
                 {
                     \"description\" : \"teste\",
-                    \"author_email\" : \"anonimo\",
+                    \"author_email\" : \"user@gmail.com\",
                     \"address\" : {
                         \"zip_code\": \"27900000\",
                         \"district\": { \"name\": \"centro\" },
@@ -25,10 +25,10 @@ public class CallControllerSpec {
                         \"reference\": ""
                     },
                     \"dept\" : {
-                        \"name\" : \"saneamento\"
+                        \"name\" : \"Secretaria Adjunta de Saneamento\"
                     },
                     \"duty\" : {
-                        \"name\" : \"Águas pluviais\"
+                        \"name\" : \"Bueiro sem tampa\"
                     }
                 }
                 """;
