@@ -9,9 +9,14 @@ import jakarta.validation.constraints.NotBlank;
 
 import java.io.Serializable;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@NoArgsConstructor
+@Data
+@Builder
+@AllArgsConstructor @NoArgsConstructor
 @Entity( name = "GrupoServico" )
 public class DutyGroup implements Serializable {
     
