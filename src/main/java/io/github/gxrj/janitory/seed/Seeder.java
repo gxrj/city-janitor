@@ -61,6 +61,11 @@ public class Seeder {
                                 .findByName( "Secretaria Adjunta de Saneamento" )
                                           .orElse( null ) 
                         )
+                        .group( 
+                            groupRepository.
+                                findByName( "Agua Pluvial, Bueiros e Esgoto" )
+                                    .orElse( null ) 
+                        )
                         .build();
 
         dutyRepository.save( duty );

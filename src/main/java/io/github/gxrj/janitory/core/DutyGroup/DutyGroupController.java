@@ -18,7 +18,7 @@ public class DutyGroupController {
     @Autowired
     private DutyGroupService groupService;
 
-    @GetMapping( "/anonymous/categories/all" )
+    @GetMapping( "/anonymous/category/all" )
     public List<DutyGroup> list() {
         return groupService.listAll();
     }
