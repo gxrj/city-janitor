@@ -22,8 +22,8 @@ public class CallController {
     private CitizenService userService;
 
     @PostMapping( "/anonymous/call/new" )
-    public String create( @RequestBody CallDto dto ) {
-
+    public CallDto create( @RequestBody CallDto dto ) {
+        /** 
         var now = LocalDateTime.now();
         var author = getAuthor( validateEmail( dto.authorEmail ) );
         dto.protocol = ProtocolEncoder.encode( now, validateEmail( dto.authorEmail ) );
@@ -39,9 +39,11 @@ public class CallController {
                     .status( Status.PROCESSING )
                     .build();
 
-        callService.createOrUpdate( call );
+        callService.createOrUpdate( call ); 
 
-        return PlainJson.builder().append( "message", "Registrado com sucesso!" ).build();
+        return PlainJson.builder().append( "message", "Registrado com sucesso!" ).build(); */
+
+        return dto;
     }
 
     private String validateEmail( String email ) {
