@@ -5,6 +5,8 @@ import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
+import io.github.gxrj.janitory.core.Address.District;
+import io.github.gxrj.janitory.core.Address.DistrictRepository;
 import io.github.gxrj.janitory.core.Citizen.Citizen;
 import io.github.gxrj.janitory.core.Citizen.CitizenRepository;
 import io.github.gxrj.janitory.core.Dept.Dept;
@@ -27,6 +29,9 @@ public class Seeder {
     private DutyRepository dutyRepository;
 
     @Autowired
+    private DistrictRepository districtRepository;
+
+    @Autowired
     private CitizenRepository userRepository;
 
     @EventListener
@@ -34,6 +39,7 @@ public class Seeder {
         seedDept();
         seedGroup();
         seedDuty();
+        seedDistrict();
         seedCitizen();
     }
 
@@ -70,6 +76,13 @@ public class Seeder {
 
         dutyRepository.save( duty );
     }
+
+    private void seedDistrict() {
+        if( districtRepository.count() > 0 ) return;
+
+        var district = District.builder().name( "centro" ).build();
+        districtRepository.save( district );
+    }   
 
     private void seedCitizen() {
         if( userRepository.count() > 0 ) return;

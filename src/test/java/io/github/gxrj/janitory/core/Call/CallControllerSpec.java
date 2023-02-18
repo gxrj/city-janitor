@@ -20,14 +20,16 @@ public class CallControllerSpec {
                     \"author_email\" : \"user@gmail.com\",
                     \"address\" : {
                         \"zip_code\": \"27900000\",
-                        \"district\": { \"name\": \"centro\" },
+                        \"district\": { \"id\": 1, \"name\": \"centro\" },
                         \"pub_place\": \"rua a\",
                         \"reference\": ""
                     },
                     \"dept\" : {
+                        \"id\": 1,
                         \"name\" : \"Secretaria Adjunta de Saneamento\"
                     },
                     \"duty\" : {
+                        \"id\": 1,
                         \"name\" : \"Bueiro sem tampa\"
                     }
                 }
