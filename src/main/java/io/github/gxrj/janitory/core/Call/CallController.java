@@ -26,7 +26,7 @@ public class CallController {
 
         var now = LocalDateTime.now();
         var author = getAuthor( validateEmail( dto.authorEmail ) );
-        dto.protocol = ProtocolEncoder.encode( now, dto.authorEmail );
+        dto.protocol = ProtocolEncoder.encode( now, validateEmail( dto.authorEmail ) );
 
         var call = Call.builder()
                     .duty( dto.duty )
@@ -45,7 +45,7 @@ public class CallController {
     }
 
     private String validateEmail( String email ) {
-        return email.isBlank() ? "anonimo" : email;
+        return email == null || email.isBlank() ? "anonimo" : email;
     }
 
     private Citizen getAuthor( String email ) {
