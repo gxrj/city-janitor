@@ -47,14 +47,7 @@ public class CallDto implements Serializable {
     }
     public static Call desserialize( CallDto dto ) {
 
-        var status = switch( dto.status ) {
-             case "Encaminhada" -> Status.FORWARDED;
-             case "Respondida" -> Status.ANSWERED;
-             case "Indeferida" -> Status.REJECTED;
-             case "Não resolvida" -> Status.NOT_SOLVED;
-             case "Finalizada" -> Status.FINISHED;
-             default -> Status.PROCESSING;
-        };
+        var status = Status.fromString( dto.status );
 
         return Call.builder()
                    .duty( dto.duty )

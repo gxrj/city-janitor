@@ -27,4 +27,15 @@ public enum Status {
 
     @Override
     public String toString() { return value; }
+
+    public static Status fromString( String status ) {
+        return switch( status ) {
+            case "Encaminhada" -> Status.FORWARDED;
+            case "Respondida" -> Status.ANSWERED;
+            case "Indeferida" -> Status.REJECTED;
+            case "Não resolvida" -> Status.NOT_SOLVED;
+            case "Finalizada" -> Status.FINISHED;
+            default -> Status.PROCESSING;
+       };
+    }
 }

@@ -62,9 +62,9 @@ public class CallController {
         return listSerialization( callService.listIntervalByDept( start, end, deptName ) );
     }
 
-    @PostMapping( "/agent/call/all_by_status" )
-    public List<CallDto> listByStatus( Status status ) {
-        return listSerialization( callService.listByStatus( status ) );
+    @GetMapping( "/agent/call/all_by_status" )
+    public List<CallDto> listByStatus( @QueryParam("status") String status ) {
+        return listSerialization( callService.listByStatus( Status.fromString( status ) ) );
     }
 
     @GetMapping( "/user/call/all_by_email" )
