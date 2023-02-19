@@ -20,7 +20,7 @@ import lombok.NoArgsConstructor;
 public class Citizen {
 
     @Id
-    @Column( columnDefinition = "uuid not null" )
+    @Column( name = "id", columnDefinition = "uuid not null" )
     @GeneratedValue( strategy = GenerationType.AUTO )
     private UUID id;
     
