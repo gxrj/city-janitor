@@ -50,7 +50,37 @@ public class CallController {
         return PlainJson.builder().append( "message", "Registrado com sucesso!" ).build();
     }
 
-    @GetMapping( "/agent/call/all_by_dept/{deptName}" )
+    @GetMapping( "/agent/call" )
+    public List<CallDto> listByDuty( @QueryParam( "duty" ) String duty ) {
+        return listSerialization( callService.listByDuty( duty ) );
+    }
+
+    @GetMapping( "/agent/call" )
+    public CallDto getByProtocol( @QueryParam( "protocol" ) String protocol ) {
+        return CallDto.serialize( callService.findByProtocol( protocol ) );
+    }
+
+    @GetMapping( "/agent/call" )
+    public List<CallDto> listByStatus( @QueryParam( "status" ) String status ) {
+        return listSerialization( callService.listByStatus( Status.fromString( status ) ) );
+    }
+
+    @GetMapping( "/agent/call" )
+    public List<CallDto> listByZipCode( @QueryParam( "zip_code" ) String zipCode ) {
+        return listSerialization( callService.listByZipCode( zipCode ) );
+    }
+
+    @GetMapping( "/agent/call" )
+    public List<CallDto> listByDistrict( @QueryParam( "district" ) String district ) {
+        return listSerialization( callService.listByDistrict( district ) );
+    }
+
+    @GetMapping( "/agent/call" )
+    public List<CallDto> listByPublicPlace( @QueryParam( "pub_place" ) String pubPlace ) {
+        return listSerialization( callService.listByPublicPlace( pubPlace ) );
+    }
+
+    @GetMapping( "/agent/call/{deptName}" )
     public List<CallDto> listFromPeriodByDept(
                                     @PathVariable String deptName, 
                                     @QueryParam( "to" ) String to,
@@ -62,19 +92,9 @@ public class CallController {
         return listSerialization( callService.listIntervalByDept( start, end, deptName ) );
     }
 
-    @GetMapping( "/agent/call/all_by_status" )
-    public List<CallDto> listByStatus( @QueryParam("status") String status ) {
-        return listSerialization( callService.listByStatus( Status.fromString( status ) ) );
-    }
-
-    @GetMapping( "/user/call/all_by_email" )
+    @GetMapping( "/user/call" )
     public List<CallDto> listByEmail( @QueryParam( "email" ) String email ) {
         return listSerialization( callService.listByAuthor( email ) );
-    }
-
-    @GetMapping( "/agent/call" )
-    public CallDto getByProtocol( @QueryParam( "protocol" ) String protocol ) {
-        return CallDto.serialize( callService.findByProtocol( protocol ) );
     }
 
     private String validateEmail( String email ) {
