@@ -77,11 +77,6 @@ public class CallController {
         return CallDto.serialize( callService.findByProtocol( protocol ) );
     }
 
-    @GetMapping( "/manager/call/all" )
-    public List<CallDto> listAll() {
-        return listSerialization( callService.listAll() );
-    }
-
     private String validateEmail( String email ) {
         return email == null || email.isBlank() ? "anonimo" : email;
     }
