@@ -1,5 +1,12 @@
 package io.github.gxrj.janitory.core.Call;
 
+import com.fasterxml.jackson.annotation.JsonRootName;
+
+import lombok.Getter;
+
+@Getter
+
+@JsonRootName( "status" )
 public enum Status {
 
     // Auto generated when the call is created
