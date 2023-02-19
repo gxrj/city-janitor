@@ -16,11 +16,14 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Builder
-@Data
+@Data 
+@Builder @NoArgsConstructor @AllArgsConstructor
 @Entity( name = "Ocorrencia" ) /*Watch out! Changing entity name changes jpql "table" naming in queries*/
 public class Call {
  

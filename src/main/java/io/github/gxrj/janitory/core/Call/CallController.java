@@ -71,6 +71,16 @@ public class CallController {
         return listSerialization( callService.listByAuthor( email ) );
     }
 
+    @GetMapping( "/agent/call" )
+    public CallDto getByProtocol( @QueryParam( "protocol" ) String protocol ) {
+        return CallDto.serialize( callService.findByProtocol( protocol ) );
+    }
+
+    @GetMapping( "/manager/call/all" )
+    public List<CallDto> listAll() {
+        return listSerialization( callService.listAll() );
+    }
+
     private String validateEmail( String email ) {
         return email == null || email.isBlank() ? "anonimo" : email;
     }

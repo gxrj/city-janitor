@@ -24,6 +24,10 @@ public class CallService {
         return repository.findByProtocol( protocol ).orElse( null );
     }
 
+    public List<Call> listAll() {
+        return repository.findAll();
+    }
+
     public List<Call> listByStatus( Status status ) {
         return repository.findByStatus( status );
     }
