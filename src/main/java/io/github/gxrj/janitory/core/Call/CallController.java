@@ -51,10 +51,10 @@ public class CallController {
     }
 
     @GetMapping( "/agent/call/all_by_dept/{deptName}" )
-    public List<CallDto> listByDept( 
-        @QueryParam( "to" ) String to,
-        @QueryParam( "from" ) String from,
-        @PathVariable String deptName ) {
+    public List<CallDto> listByDept(
+                                    @PathVariable String deptName, 
+                                    @QueryParam( "to" ) String to,
+                                    @QueryParam( "from" ) String from ) {
 
         var start = LocalDateTime.parse( from, DateTimeFormatter.ISO_LOCAL_DATE_TIME );
         var end = LocalDateTime.parse( to, DateTimeFormatter.ISO_LOCAL_DATE_TIME );
