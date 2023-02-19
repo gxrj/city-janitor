@@ -13,6 +13,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -49,11 +50,11 @@ public class CallController {
         return PlainJson.builder().append( "message", "Registrado com sucesso!" ).build();
     }
 
-    @GetMapping( "/agent/call/all_by_dept" )
+    @GetMapping( "/agent/call/all_by_dept/{deptName}" )
     public List<CallDto> listByDept( 
         @QueryParam( "to" ) String to,
         @QueryParam( "from" ) String from,
-        @QueryParam( "dept_name" ) String deptName ) {
+        @PathVariable String deptName ) {
 
         var start = LocalDateTime.parse( from, DateTimeFormatter.ISO_LOCAL_DATE_TIME );
         var end = LocalDateTime.parse( to, DateTimeFormatter.ISO_LOCAL_DATE_TIME );
