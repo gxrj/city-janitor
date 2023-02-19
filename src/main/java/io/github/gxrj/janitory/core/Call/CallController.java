@@ -50,24 +50,25 @@ public class CallController {
     }
 
     @GetMapping( "/agent/call/all_by_dept" )
-    public List<Call> listByDept( 
+    public List<CallDto> listByDept( 
         @QueryParam( "to" ) String to,
         @QueryParam( "from" ) String from,
         @QueryParam( "dept_name" ) String deptName ) {
 
         var start = LocalDateTime.parse( from, DateTimeFormatter.ISO_LOCAL_DATE_TIME );
         var end = LocalDateTime.parse( to, DateTimeFormatter.ISO_LOCAL_DATE_TIME );
-        return callService.listIntervalByDept( start, end, deptName );
+
+        return listSerialization( callService.listIntervalByDept( start, end, deptName ) );
     }
 
     @PostMapping( "/agent/call/all_by_status" )
-    public List<Call> listByStatus( Status status ) {
-        return callService.listByStatus( status );
+    public List<CallDto> listByStatus( Status status ) {
+        return listSerialization( callService.listByStatus( status ) );
     }
 
     @GetMapping( "/user/call/all_by_email" )
-    public List<Call> listByEmail( @QueryParam( "email" ) String email ) {
-        return callService.listByAuthor( email );
+    public List<CallDto> listByEmail( @QueryParam( "email" ) String email ) {
+        return listSerialization( callService.listByAuthor( email ) );
     }
 
     private String validateEmail( String email ) {
@@ -76,5 +77,9 @@ public class CallController {
 
     private Citizen getAuthor( String email ) {
         return email.equalsIgnoreCase( "anonimo" ) ? null : userService.findByEmail( email );
+    }
+
+    private List<CallDto> listSerialization( List<Call> list ) {
+        return list.parallelStream().map( CallDto::serialize ).toList();
     }
 }
