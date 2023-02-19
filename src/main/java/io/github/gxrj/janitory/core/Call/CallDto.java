@@ -23,7 +23,7 @@ import com.fasterxml.jackson.databind.annotation.JsonNaming;
 public class CallDto implements Serializable {
 
     Duty duty;
-    Status status;
+    String status;
     Address address;
     String protocol;
     String createdAt;
@@ -33,25 +33,36 @@ public class CallDto implements Serializable {
 
     @JsonValue
     public static CallDto serialize( Call call ) {
+
         return CallDto.builder()
                       .duty( call.getDuty() )
-                      .status( call.getStatus() )
                       .address( call.getAddress() )
                       .protocol( call.getProtocol() )
                       .destination( call.getDestination() )
                       .description( call.getDescription() )
+                      .status( call.getStatus().getValue() )
                       .authorEmail( call.getAuthor().getEmail() )
                       .createdAt( call.getCreationDate().toString() )
                       .build();
     }
     public static Call desserialize( CallDto dto ) {
+
+        var status = switch( dto.status ) {
+             case "Encaminhada" -> Status.FORWARDED;
+             case "Respondida" -> Status.ANSWERED;
+             case "Indeferida" -> Status.REJECTED;
+             case "Não resolvida" -> Status.NOT_SOLVED;
+             case "Finalizada" -> Status.FINISHED;
+             default -> Status.PROCESSING;
+        };
+
         return Call.builder()
                    .duty( dto.duty )
+                   .status( status )
                    .address( dto.address )
                    .protocol( dto.protocol )
                    .destination( dto.destination )
                    .description( dto.description )
-                   .status( dto.status )
                    .build();
     }
 

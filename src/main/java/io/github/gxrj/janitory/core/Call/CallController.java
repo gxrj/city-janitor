@@ -51,7 +51,7 @@ public class CallController {
     }
 
     @GetMapping( "/agent/call/all_by_dept/{deptName}" )
-    public List<CallDto> listByDept(
+    public List<CallDto> listFromPeriodByDept(
                                     @PathVariable String deptName, 
                                     @QueryParam( "to" ) String to,
                                     @QueryParam( "from" ) String from ) {
