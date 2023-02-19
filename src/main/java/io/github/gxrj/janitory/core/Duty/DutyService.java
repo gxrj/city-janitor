@@ -12,7 +12,7 @@ public class DutyService {
     private DutyRepository repository;
 
     public void createOrUpdate( Duty entity ) {
-        repository.save( entity );
+        repository.saveAndFlush( entity );
     }
 
     public Duty findByName( String name ) {

@@ -13,7 +13,7 @@ public class ActionService {
     private ActionRepository repository;
 
     public void createOrUpdate( Action entity ) {
-        repository.save( entity );
+        repository.saveAndFlush( entity );
     }
 
     public List<Action> listByAuthor( String login ) {

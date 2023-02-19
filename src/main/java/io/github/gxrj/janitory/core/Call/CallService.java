@@ -13,7 +13,7 @@ public class CallService {
     private CallRepository repository;
 
     public void createOrUpdate( Call entity ) {
-        repository.save( entity );
+        repository.saveAndFlush( entity );
     }
 
     public void delete( Call entity ) {

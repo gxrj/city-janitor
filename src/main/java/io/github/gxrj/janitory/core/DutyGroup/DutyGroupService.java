@@ -20,7 +20,7 @@ public class DutyGroupService {
     }
 
     public void createOrUpdate( DutyGroup entity ) {
-        repository.save( entity );
+        repository.saveAndFlush( entity );
     }
 
     public void delete( DutyGroup entity ) {

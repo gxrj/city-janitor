@@ -16,7 +16,7 @@ public class DeptService {
     }
 
     public void createOrUpdate( Dept entity ) {
-        repository.save( entity );
+        repository.saveAndFlush( entity );
     }
 
     public List<Dept> list() {

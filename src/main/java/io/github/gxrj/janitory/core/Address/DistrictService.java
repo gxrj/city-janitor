@@ -16,7 +16,7 @@ public class DistrictService {
     }
 
     public void createOrUpdate( District entity ) {
-        repository.save( entity );
+        repository.saveAndFlush( entity );
     }
 
     public void delete( District entity ) {

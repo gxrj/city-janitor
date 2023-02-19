@@ -10,7 +10,7 @@ public class CitizenService {
     private CitizenRepository repository;
 
     public void createOrUpdate( Citizen entity ) {
-        repository.save( entity );
+        repository.saveAndFlush( entity );
     }
 
     public void delete( Citizen entity ) {

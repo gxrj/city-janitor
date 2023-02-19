@@ -16,7 +16,7 @@ public class PubAgentService {
     } 
 
     public void createOrUpdate( PubAgent entity ) {
-        repository.save( entity );
+        repository.saveAndFlush( entity );
     }
 
     public List<PubAgent> listAll() {
