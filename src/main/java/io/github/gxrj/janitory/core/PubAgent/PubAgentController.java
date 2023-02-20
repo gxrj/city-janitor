@@ -1,6 +1,5 @@
 package io.github.gxrj.janitory.core.PubAgent;
 
-import io.github.gxrj.janitory.core.Dept.DeptService;
 import io.github.gxrj.janitory.utils.PlainJson;
 
 import java.util.List;
@@ -15,9 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping( consumes = "application/json", produces = "application/json" )
 public class PubAgentController {
-    
-    @Autowired
-    private DeptService deptService;
 
     @Autowired
     private PubAgentService agentService;
@@ -54,7 +50,7 @@ public class PubAgentController {
     public String createAgent( @RequestBody PubAgentDto dto ) {
 
         try{
-            var entity = PubAgentDto.desserialize( dto, deptService );
+            var entity = PubAgentDto.deserialize( dto );
 
             // To do: encrypt password
 

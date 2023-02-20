@@ -10,6 +10,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -45,7 +47,8 @@ public class CallDto implements Serializable {
                       .createdAt( call.getCreationDate().toString() )
                       .build();
     }
-    public static Call desserialize( CallDto dto ) {
+
+    public static Call deserialize( CallDto dto ) {
 
         var status = Status.fromString( dto.status );
 
@@ -56,6 +59,11 @@ public class CallDto implements Serializable {
                    .protocol( dto.protocol )
                    .destination( dto.destination )
                    .description( dto.description )
+                   .creationDate( 
+                        LocalDateTime.parse( 
+                                dto.createdAt, 
+                                DateTimeFormatter.ISO_LOCAL_DATE_TIME ) 
+                    )
                    .build();
     }
 

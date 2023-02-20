@@ -1,11 +1,15 @@
 package io.github.gxrj.janitory.core.Action;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 
+import io.github.gxrj.janitory.core.Call.CallDto;
+import io.github.gxrj.janitory.core.PubAgent.PubAgentDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -18,26 +22,36 @@ import lombok.NoArgsConstructor;
 public class ActionDto implements Serializable {
     
     String protocol;
+    CallDto callDto;
     String userReply;
     String createdAt;
-    String agentLogin;
     String description;
-    String callProtocol;
+    PubAgentDto agentDto;
 
     public static ActionDto serialize( Action action ) {
         return ActionDto.builder()
                         .protocol( action.getProtocol() )
                         .userReply( action.getUserReply() )
                         .description( action.getDescription() )
-                        .agentLogin( action.getAgent().getLogin() )
-                        .callProtocol( action.getCall().getProtocol() )
+                        .callDto( CallDto.serialize( action.getCall() ) )
+                        .agentDto( PubAgentDto.serialize( action.getAgent() ) )
                         .createdAt( action.getCreationDate().toString() )
                         .build();
     }
 
-    public static Action deserialize( ActionDto dto ) {
+    public static Action deserialize( ActionDto dto ) throws Exception {
         // To do
         return Action.builder()
+                     .protocol( dto.protocol )
+                     .userReply( dto.userReply )
+                     .description( dto.description )
+                     .call( CallDto.deserialize( dto.callDto ) )
+                     .agent( PubAgentDto.deserialize( dto.agentDto ) )
+                     .creationDate( 
+                        LocalDateTime.parse( 
+                                dto.createdAt,
+                                DateTimeFormatter.ISO_LOCAL_DATE_TIME ) 
+                      )
                      .build();
     }
 }

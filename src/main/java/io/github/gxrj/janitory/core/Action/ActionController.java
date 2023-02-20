@@ -14,6 +14,6 @@ public class ActionController {
 
     @PostMapping( "/agent/action/list_by_call" )
     public List<Action> listByCall( ActionDto dto ) {
-        return actionService.listByCall( dto.callProtocol );
+        return actionService.listByCall( dto.callDto.getProtocol() );
     }
 }
