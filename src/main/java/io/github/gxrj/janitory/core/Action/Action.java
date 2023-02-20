@@ -14,9 +14,13 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@Builder @AllArgsConstructor @NoArgsConstructor
 @Entity( name = "Atendimento" ) /*Watch out! Changing entity name changes jpql "table" naming in queries*/
 public class Action {
  
