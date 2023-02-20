@@ -40,7 +40,6 @@ public class ActionDto implements Serializable {
     }
 
     public static Action deserialize( ActionDto dto ) throws Exception {
-        // To do
         return Action.builder()
                      .protocol( dto.protocol )
                      .userReply( dto.userReply )
