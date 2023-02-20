@@ -50,32 +50,32 @@ public class CallController {
         return PlainJson.builder().append( "message", "Registrado com sucesso!" ).build();
     }
 
-    @GetMapping( "/agent/call" )
+    @GetMapping( "/agent/call_by_duty" )
     public List<CallDto> listByDuty( @QueryParam( "duty" ) String duty ) {
         return listSerialization( callService.listByDuty( duty ) );
     }
 
-    @GetMapping( "/agent/call" )
+    @GetMapping( "/agent/call/all_by_protocol" )
     public CallDto getByProtocol( @QueryParam( "protocol" ) String protocol ) {
         return CallDto.serialize( callService.findByProtocol( protocol ) );
     }
 
-    @GetMapping( "/agent/call" )
+    @GetMapping( "/agent/call/all_by_status" )
     public List<CallDto> listByStatus( @QueryParam( "status" ) String status ) {
         return listSerialization( callService.listByStatus( Status.fromString( status ) ) );
     }
 
-    @GetMapping( "/agent/call" )
+    @GetMapping( "/agent/call/all_by_zip_code" )
     public List<CallDto> listByZipCode( @QueryParam( "zip_code" ) String zipCode ) {
         return listSerialization( callService.listByZipCode( zipCode ) );
     }
 
-    @GetMapping( "/agent/call" )
+    @GetMapping( "/agent/call/all_by_district" )
     public List<CallDto> listByDistrict( @QueryParam( "district" ) String district ) {
         return listSerialization( callService.listByDistrict( district ) );
     }
 
-    @GetMapping( "/agent/call" )
+    @GetMapping( "/agent/call/all_by_pub_place" )
     public List<CallDto> listByPublicPlace( @QueryParam( "pub_place" ) String pubPlace ) {
         return listSerialization( callService.listByPublicPlace( pubPlace ) );
     }
