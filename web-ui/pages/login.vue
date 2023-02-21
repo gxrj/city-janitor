@@ -10,9 +10,8 @@
 </template>
 
 <script setup>
-    function logIn() {
-        navigateTo( { path: '/home' } )
-    }
+    definePageMeta( { layout: false } )
+    function logIn() { navigateTo( { path: '/home' } ) }
 </script>
 
 <style>
