@@ -21,9 +21,9 @@
         position: relative;
         background-color: rgb(48, 48, 48);
     }
-    #ghost{
-        height: 25vh;
-    }
+
+    #ghost{ height: 25vh; }
+
     form {
         width: 50%;
         padding: 5%;
@@ -39,11 +39,9 @@
         margin-bottom: 5px;
     }
 
-    input:focus {
-        outline: none;
-    }
+    input:focus { outline: none; }
 
-    button{
+    button {
         color: white;
         height: 25px;
         cursor: pointer;
@@ -51,5 +49,4 @@
         border-radius: 5px;
         background-color: rgb(70, 70, 175);
     }
-
 </style>
