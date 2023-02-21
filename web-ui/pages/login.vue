@@ -1,12 +1,19 @@
 <template>
+    <div id="ghost"></div>
     <form>
         <label>Login:</label>
         <input name="login"/>
         <label>Senha:</label>
         <input name="password" type="password" />
-        <button>Logar</button>
+        <button @click.prevent="logIn()">Logar</button>
     </form>
 </template>
+
+<script setup>
+    function logIn() {
+        navigateTo( { path: '/home' } )
+    }
+</script>
 
 <style>
     :root {
@@ -14,9 +21,11 @@
         position: relative;
         background-color: rgb(48, 48, 48);
     }
-
+    #ghost{
+        height: 25vh;
+    }
     form {
-        width: 80%;
+        width: 50%;
         padding: 5%;
         margin: auto;
         display: grid;
