@@ -1,15 +1,16 @@
 <template>
-    <div id="header">
+    <header>
         <label>Janitory</label>
-    </div>
+    </header>
 </template>
 
 <style>
-    #header {
+    header {
         width: auto;
+        text-align: center;
         background-color: rgb(70, 70, 175);
     }
-    #header > label {
+    header > label {
         color: white;
     }
 </style>
