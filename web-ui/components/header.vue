@@ -1,16 +1,14 @@
 <template>
     <header>
-        <label>Janitory</label>
+        Janitory
     </header>
 </template>
 
 <style>
     header {
         width: auto;
+        color: white;
         text-align: center;
         background-color: rgb(70, 70, 175);
-    }
-    header > label {
-        color: white;
     }
 </style>
