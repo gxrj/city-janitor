@@ -12,6 +12,7 @@
         width: auto;
     }
     #content {
-        min-height: 94.5vh;
+        margin-top: 2%;
+        min-height: 90vh;
     }
 </style>

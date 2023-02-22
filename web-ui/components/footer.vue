@@ -1,6 +1,6 @@
 <template>
     <footer>
-     Made with &#128154; by gxrj
+        Made with &#128154; by gxrj
     </footer>
 </template>
 
