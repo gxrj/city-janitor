@@ -53,7 +53,7 @@ public class TokenController {
     }
 
     // To do: At this endpoint create an authN filter to query for refresh token instead of access token
-    @GetMapping( "/agent/refresh" )
+    @GetMapping( "/agent/token/new" )
     private String getRefreshToken( Authentication auth ) {
 
         var tokenLifeSpan = 1800L; // 30 minutes
