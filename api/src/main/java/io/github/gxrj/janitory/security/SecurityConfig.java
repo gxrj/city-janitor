@@ -14,7 +14,6 @@ import io.github.gxrj.janitory.security.applicationKeys.AppKeysService;
 import jakarta.annotation.PostConstruct;
 
 import java.util.HashMap;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -64,7 +63,7 @@ public class SecurityConfig {
 
     @Bean
     PasswordEncoder passwordEncoder() {
-        Map<String, PasswordEncoder> encoders = new HashMap();
+        var encoders = new HashMap<String, PasswordEncoder>();
 
         encoders.put( "bcrypt", new BCryptPasswordEncoder() );
         encoders.put( "scrypt", SCryptPasswordEncoder.defaultsForSpringSecurity_v5_8() );
