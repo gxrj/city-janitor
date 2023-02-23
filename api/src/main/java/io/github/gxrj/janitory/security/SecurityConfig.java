@@ -19,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.argon2.Argon2PasswordEncoder;
@@ -48,15 +49,17 @@ public class SecurityConfig {
 
         http.authorizeHttpRequests( 
             authorize -> authorize
-                .requestMatchers( "/anonymous**", "/token" ).permitAll()
+                .requestMatchers( "/anonymous**", "/token**" ).permitAll()
                 .requestMatchers( "/user**" ).hasRole( "CITIZEN" )
                 .requestMatchers( "/authenticated**" ).hasAnyRole( "ADMIN", "AGENT", "CITIZEN" )
                 .requestMatchers( "/agent**" ).hasAnyRole( "ADMIN", "AGENT" )
                 .requestMatchers( "/manager**" ).hasRole( "ADMIN" )
                 .anyRequest().authenticated()
         )
+        .csrf( csrf -> csrf.ignoringRequestMatchers( "/token" ) )
         .userDetailsService( agentDetailsService() )
-        .oauth2ResourceServer( config -> config.jwt() );
+        .oauth2ResourceServer( config -> config.jwt() )
+        .sessionManagement( session -> session.sessionCreationPolicy( SessionCreationPolicy.STATELESS ) );
 
         return http.build();
     }

@@ -12,6 +12,7 @@ import org.springframework.security.oauth2.jwt.JwtEncoder;
 import org.springframework.security.oauth2.jwt.JwtEncoderParameters;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.github.gxrj.janitory.core.PubAgent.PubAgent;
@@ -32,7 +33,7 @@ public class TokenController {
     private PasswordEncoder passwordEncoder;
 
     @PostMapping( "/token" )
-    public String login( PubAgentDto credentials ) {
+    public String login( @RequestBody PubAgentDto credentials ) {
         var account = agentService.findByLogin( credentials.getLogin() );
 
         if( isInvalidLogin( account, credentials) ) 

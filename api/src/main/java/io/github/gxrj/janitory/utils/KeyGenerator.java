@@ -13,7 +13,7 @@ public class KeyGenerator {
         return new RSAKeyGenerator( 2048 )
                     .keyID( UUID.randomUUID().toString() )
                     .keyUse( KeyUse.SIGNATURE )
-                    .algorithm( new Algorithm( "RSA256" ) )
+                    .algorithm( new Algorithm( "RS256" ) )
                     .generate();
     }
 }

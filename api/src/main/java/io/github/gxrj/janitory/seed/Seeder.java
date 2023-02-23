@@ -3,6 +3,7 @@ package io.github.gxrj.janitory.seed;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import io.github.gxrj.janitory.core.Address.District;
@@ -15,6 +16,8 @@ import io.github.gxrj.janitory.core.Duty.Duty;
 import io.github.gxrj.janitory.core.Duty.DutyRepository;
 import io.github.gxrj.janitory.core.DutyGroup.DutyGroup;
 import io.github.gxrj.janitory.core.DutyGroup.DutyGroupRepository;
+import io.github.gxrj.janitory.core.PubAgent.PubAgent;
+import io.github.gxrj.janitory.core.PubAgent.PubAgentRepository;
 
 @Component
 public class Seeder {
@@ -32,7 +35,13 @@ public class Seeder {
     private DistrictRepository districtRepository;
 
     @Autowired
+    private PubAgentRepository agentRepository;
+
+    @Autowired
     private CitizenRepository userRepository;
+
+    @Autowired
+    private PasswordEncoder encoder;
 
     @EventListener
     public void seed( ContextRefreshedEvent event ) {
@@ -40,6 +49,7 @@ public class Seeder {
         seedGroup();
         seedDuty();
         seedDistrict();
+        seedAgent();
         seedCitizen();
     }
 
@@ -83,6 +93,23 @@ public class Seeder {
         var district = District.builder().name( "centro" ).build();
         districtRepository.save( district );
     }   
+
+    private void seedAgent() {
+        if( agentRepository.count() > 0 ) return;
+
+        var agent = PubAgent.builder()
+                            .isAdmin( true )
+                            .login( "agent" )
+                            .name( "zé das couves" )
+                            .password( encoder.encode("123") )
+                            .dept( 
+                                deptRepository.findByName( "Secretaria Adjunta de Saneamento" )
+                                                .orElse( null ) 
+                            )
+                            .build();
+
+        agentRepository.save( agent );
+    }
 
     private void seedCitizen() {
         if( userRepository.count() > 0 ) return;
