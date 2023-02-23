@@ -1,0 +1,23 @@
+Greetings
+
+The current project is a prototype for an urban janitory system. I've already have done a project for 
+this business case but code grew a little bit complex and i haven't the guts to touch it again. 
+I still aiming to refactor it but i'd rather start a project from scratch.
+In this approach i'm trying to provide all required features by writing the less code i can figure out.
+
+=== Stack used:
+
+- Spring boot;
+- Spring Security;
+- JUnit; ( in attempt to add usefull tests and not deleting them )
+- Nuxtjs;
+- Android;
+
+=== Project Structure:
+
+- link:api[api] ( relies backend logic );
+- link:mobile-ui[mobile-ui] ( self-explanatory );
+- link:web-ui[web-ui] ( same as the previous item );
+
+
+There are lots of work to be done
