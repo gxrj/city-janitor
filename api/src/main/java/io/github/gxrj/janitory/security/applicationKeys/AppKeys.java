@@ -19,6 +19,6 @@ public class AppKeys {
     @GeneratedValue( strategy = GenerationType.AUTO )
     private Long id;
 
-    @Column( name = "par_de_chaves", nullable = false )
+    @Column( name = "par_de_chaves", length = 5239, nullable = false )
     private JWK keyPair;
 }
