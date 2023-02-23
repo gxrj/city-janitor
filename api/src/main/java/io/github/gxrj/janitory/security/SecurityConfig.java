@@ -56,7 +56,7 @@ public class SecurityConfig {
                 .requestMatchers( "/manager**" ).hasRole( "ADMIN" )
                 .anyRequest().authenticated()
         )
-        .csrf( csrf -> csrf.ignoringRequestMatchers( "/token" ) )
+        .csrf( csrf -> csrf.ignoringRequestMatchers( "/token", "/anonymous**" ) )
         .userDetailsService( agentDetailsService() )
         .oauth2ResourceServer( config -> config.jwt() )
         .sessionManagement( session -> session.sessionCreationPolicy( SessionCreationPolicy.STATELESS ) );
