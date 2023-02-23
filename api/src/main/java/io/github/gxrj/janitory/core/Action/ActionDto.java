@@ -1,8 +1,6 @@
 package io.github.gxrj.janitory.core.Action;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
@@ -37,20 +35,5 @@ public class ActionDto implements Serializable {
                         .agentDto( PubAgentDto.serialize( action.getAgent() ) )
                         .createdAt( action.getCreationDate().toString() )
                         .build();
-    }
-
-    public static Action deserialize( ActionDto dto ) throws Exception {
-        return Action.builder()
-                     .protocol( dto.protocol )
-                     .userReply( dto.userReply )
-                     .description( dto.description )
-                     .call( CallDto.deserialize( dto.callDto ) )
-                     .agent( PubAgentDto.deserialize( dto.agentDto ) )
-                     .creationDate( 
-                        LocalDateTime.parse( 
-                                dto.createdAt,
-                                DateTimeFormatter.ISO_LOCAL_DATE_TIME ) 
-                      )
-                     .build();
     }
 }

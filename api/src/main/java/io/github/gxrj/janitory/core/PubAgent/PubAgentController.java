@@ -5,6 +5,7 @@ import io.github.gxrj.janitory.utils.PlainJson;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,6 +18,9 @@ public class PubAgentController {
 
     @Autowired
     private PubAgentService agentService;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @GetMapping( "/manager/agent/all" )
     public List<PubAgent> listAll() {
@@ -50,9 +54,15 @@ public class PubAgentController {
     public String createAgent( @RequestBody PubAgentDto dto ) {
 
         try{
-            var entity = PubAgentDto.deserialize( dto );
+            PubAgentDto.validateFields( dto );
 
-            // To do: encrypt password
+            var entity = PubAgent.builder()
+                            .dept( dto.dept )
+                            .name( dto.name )
+                            .login( dto.login )
+                            .isAdmin( dto.isAdmin )
+                            .password( passwordEncoder.encode( dto.password ) )
+                            .build();
 
             agentService.createOrUpdate( entity );
 
@@ -75,7 +85,7 @@ public class PubAgentController {
         if( entity == null ) 
             return PlainJson.builder().append( "error", "Login não encontrado" ).build();
 
-        // To do: update password
+        entity.setPassword( passwordEncoder.encode( dto.password ) );
 
         agentService.createOrUpdate( entity );
 

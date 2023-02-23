@@ -1,8 +1,8 @@
 package io.github.gxrj.janitory.core.Action;
 
-
 import io.github.gxrj.janitory.core.Call.CallDto;
-import io.github.gxrj.janitory.core.PubAgent.PubAgentDto;
+import io.github.gxrj.janitory.core.Call.CallService;
+import io.github.gxrj.janitory.core.PubAgent.PubAgentService;
 import io.github.gxrj.janitory.utils.PlainJson;
 import io.github.gxrj.janitory.utils.ProtocolEncoder;
 
@@ -22,7 +22,13 @@ import org.springframework.web.bind.annotation.RestController;
 public class ActionController {
     
     @Autowired
+    private CallService callService;
+    
+    @Autowired
     private ActionService actionService;
+
+    @Autowired
+    private PubAgentService agentService;
 
     @PostMapping( "/agent/action/new" )
     public String create( ActionDto dto ) { 
@@ -33,8 +39,8 @@ public class ActionController {
             var entity = Action.builder()
                             .creationDate( now )
                             .description( dto.description )
-                            .call( CallDto.deserialize( dto.callDto ) )
-                            .agent( PubAgentDto.deserialize( dto.agentDto ) )
+                            .agent( agentService.findByLogin( dto.agentDto.getLogin() ) )
+                            .call( callService.findByProtocol( dto.callDto.getProtocol() ) )
                             .protocol( ProtocolEncoder.encode( now, dto.agentDto.getLogin() ) )
                             .build();
 

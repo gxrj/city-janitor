@@ -10,8 +10,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -47,24 +45,4 @@ public class CallDto implements Serializable {
                       .createdAt( call.getCreationDate().toString() )
                       .build();
     }
-
-    public static Call deserialize( CallDto dto ) {
-
-        var status = Status.fromString( dto.status );
-
-        return Call.builder()
-                   .duty( dto.duty )
-                   .status( status )
-                   .address( dto.address )
-                   .protocol( dto.protocol )
-                   .destination( dto.destination )
-                   .description( dto.description )
-                   .creationDate( 
-                        LocalDateTime.parse( 
-                                dto.createdAt, 
-                                DateTimeFormatter.ISO_LOCAL_DATE_TIME ) 
-                    )
-                   .build();
-    }
-
 }

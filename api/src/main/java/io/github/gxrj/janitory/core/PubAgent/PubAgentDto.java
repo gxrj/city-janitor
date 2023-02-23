@@ -5,6 +5,8 @@ import java.io.Serializable;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.databind.PropertyNamingStrategies;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
 
 import io.github.gxrj.janitory.core.Dept.Dept;
 
@@ -16,16 +18,18 @@ import lombok.Data;
 @Data @AllArgsConstructor
 
 @JsonIgnoreProperties(
-    value = "password",
+    value = { "isAdmin", "password" },
     allowSetters = true, 
     ignoreUnknown = true 
-) 
+)
 @JsonInclude( JsonInclude.Include.NON_EMPTY )
+@JsonNaming( PropertyNamingStrategies.SnakeCaseStrategy.class ) 
 public class PubAgentDto implements Serializable {
     
     String name;
     Dept dept;
     String password;
+    Boolean isAdmin;
     
     @NotBlank
     String login;
@@ -35,21 +39,18 @@ public class PubAgentDto implements Serializable {
         return new PubAgentDto( 
                     entity.getName(), 
                     entity.getDept(), 
-                    entity.getPassword(), 
+                    entity.getPassword(),
+                    entity.isAdmin(), 
                     entity.getLogin() );
     }
 
-    public static PubAgent deserialize( PubAgentDto dto ) throws Exception {
-
+    /**
+     * Checks if all required fields for creation of new entities are properly set.
+     */
+    public static void validateFields( PubAgentDto dto ) throws Exception {
+        if( dto.isAdmin == null ) throw new Exception( "Privilégio de usuário não encontrado" );
         if( dto.name == null || dto.name.isBlank() ) throw new Exception( "Nome não encontrado" );
         if( dto.login == null || dto.login.isBlank() ) throw new Exception( "Login não encontrado" );
         if( dto.password == null || dto.password.isBlank() ) throw new Exception( "Senha não encontrada" );
-
-        return PubAgent.builder()
-                            .dept( dto.dept )
-                            .name( dto.name )
-                            .login( dto.login )
-                            .password( dto.password )
-                            .build();
     }
 }

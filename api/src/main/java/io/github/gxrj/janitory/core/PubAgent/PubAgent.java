@@ -25,16 +25,20 @@ public class PubAgent {
     @GeneratedValue( strategy = GenerationType.AUTO )
     private UUID id;
 
+    @Builder.Default
+    @Column( name = "admin" )
+    private boolean isAdmin = false;
+
     @ManyToOne
     @JoinColumn( name = "secretaria" )
     private Dept dept;
 
-    @Column( name = "nome", nullable = false, length = 60 )
-    private String name;
+    @Column( name = "senha", nullable = false )
+    private String password;
 
     @Column( unique = true, nullable = false, length = 20 )
     private String login;
 
-    @Column( name = "senha", nullable = false )
-    private String password;
+    @Column( name = "nome", nullable = false, length = 60 )
+    private String name;
 }
