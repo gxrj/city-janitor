@@ -1,12 +1,15 @@
 package io.github.gxrj.janitory.security.token;
 
 import java.time.Instant;
+import java.util.Base64;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.crypto.keygen.Base64StringKeyGenerator;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.oauth2.core.OAuth2RefreshToken;
 import org.springframework.security.oauth2.jwt.JwtClaimsSet;
 import org.springframework.security.oauth2.jwt.JwtEncoder;
 import org.springframework.security.oauth2.jwt.JwtEncoderParameters;
@@ -41,20 +44,25 @@ public class TokenController {
                             .append( "error", "Login ou senha inválidos!" )
                             .build();
 
-        var durationInSeconds = 300L; // 5 minutes
+        var accessTokenLifeSpan = 900L; // 15 minutes
+        var refresTokenLifeSpan = 1800L; // 30 minutes
 
         return PlainJson.builder()
-                        .append( "access_token", buildTokenFromEntity( account, durationInSeconds ) )
+                        .append( "access_token", buildTokenFromEntity( account, accessTokenLifeSpan ) )
+                        .append( "refresh_token", generateRefreshToken( refresTokenLifeSpan ) )
                         .build();
     }
-
+    // To do: At this endpoint create an authN filter to query for refresh token instead of access token
     @GetMapping( "/agent/refresh" )
-    public String refresh( Authentication auth ) {
-        var durationInSeconds = 900L; // 15 minutes
+    private String getRefreshToken( Authentication auth ) {
+
+        var accessTokenLifeSpan = 900L; // 15 minutes
+        var refresTokenLifeSpan = 1800L; // 30 minutes
 
         return PlainJson.builder()
-                        .append( "token", buildTokenFromAuthentication( auth, durationInSeconds ) )
-                        .build();
+                    .append( "access_token", buildTokenFromAuthentication( auth, accessTokenLifeSpan ) )
+                    .append( "refresh_token", generateRefreshToken( refresTokenLifeSpan ) )
+                    .build();
     }
 
     private boolean isInvalidLogin( PubAgent account, PubAgentDto credentials ) {
@@ -63,18 +71,18 @@ public class TokenController {
         else return false;
     }
 
+    private String buildTokenFromEntity( PubAgent account, long secondsToLive ) {
+        var username = account.getLogin();
+        var roles = account.isAdmin() ? "ROLE_ADMIN ROLE_AGENT" : "ROLE_AGENT";
+        return generateToken( username, roles, secondsToLive );
+    }
+
     private String buildTokenFromAuthentication( Authentication account, long secondsToLive ) {
         var username = account.getPrincipal().toString();
         var roles = account.getAuthorities().parallelStream()
                             .map( GrantedAuthority::getAuthority )
                             .collect( Collectors.joining( " " ) );
 
-        return generateToken( username, roles, secondsToLive );
-    }
-
-    private String buildTokenFromEntity( PubAgent account, long secondsToLive ) {
-        var username = account.getLogin();
-        var roles = account.isAdmin() ? "ROLE_ADMIN ROLE_AGENT" : "ROLE_AGENT";
         return generateToken( username, roles, secondsToLive );
     }
 
@@ -92,5 +100,19 @@ public class TokenController {
                                 .build();
 
         return jwtEncoder.encode( JwtEncoderParameters.from( claims ) ).getTokenValue();
+    }
+
+    private String generateRefreshToken( long secondsToLive ) {
+
+        var issuedAt = Instant.now();
+        var keyLength = 96;
+        var expiresAt = issuedAt.plusSeconds( secondsToLive );
+        var encoder = Base64.getUrlEncoder().withoutPadding();
+        var genarator = new Base64StringKeyGenerator( encoder, keyLength );
+
+        return new OAuth2RefreshToken( 
+                        genarator.generateKey(), issuedAt, expiresAt 
+                    )
+                    .getTokenValue();
     }
 }
