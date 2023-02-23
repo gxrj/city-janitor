@@ -44,24 +44,23 @@ public class TokenController {
                             .append( "error", "Login ou senha inválidos!" )
                             .build();
 
-        var accessTokenLifeSpan = 900L; // 15 minutes
-        var refresTokenLifeSpan = 1800L; // 30 minutes
+        var tokenLifeSpan = 900L; // 15 minutes
 
         return PlainJson.builder()
-                        .append( "access_token", buildTokenFromEntity( account, accessTokenLifeSpan ) )
-                        .append( "refresh_token", generateRefreshToken( refresTokenLifeSpan ) )
+                        .append( "access_token", buildTokenFromEntity( account, tokenLifeSpan ) )
+                        .append( "refresh_token", generateRefreshToken( tokenLifeSpan * 2 ) )
                         .build();
     }
+
     // To do: At this endpoint create an authN filter to query for refresh token instead of access token
     @GetMapping( "/agent/refresh" )
     private String getRefreshToken( Authentication auth ) {
 
-        var accessTokenLifeSpan = 900L; // 15 minutes
-        var refresTokenLifeSpan = 1800L; // 30 minutes
+        var tokenLifeSpan = 1800L; // 30 minutes
 
         return PlainJson.builder()
-                    .append( "access_token", buildTokenFromAuthentication( auth, accessTokenLifeSpan ) )
-                    .append( "refresh_token", generateRefreshToken( refresTokenLifeSpan ) )
+                    .append( "access_token", buildTokenFromAuthentication( auth, tokenLifeSpan ) )
+                    .append( "refresh_token", generateRefreshToken( tokenLifeSpan * 2 ) )
                     .build();
     }
 
