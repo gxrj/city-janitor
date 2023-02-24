@@ -1,0 +1,13 @@
+=== Observations
+
+At the moment there is no token rotation strategy and its lifetime is 8 hours long.
+It's taken into consideration to remove this concern from resource server and leave 
+it to another application like spring-security-oauth2-authorization-server or keycloack.
+
+=== Things to improve:
+[%interactive]
+* [ ] Refactoring
+* [ ] Unit Testing
+* [ ] Acceptance Testing
+* [ ] Integration Testing
+* [ ] Token management 
