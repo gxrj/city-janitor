@@ -16,7 +16,7 @@ In this approach i'm trying to provide all required features by writing the less
 === Project Structure:
 
 - link:api[api] ( relies backend logic );
-- link:mobile-ui[mobile-ui] ( self-explanatory );
+- link:mobile-ui[mobile-ui] ( self explanatory );
 - link:web-ui[web-ui] ( same as the previous item );
 
 
