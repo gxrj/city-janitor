@@ -1,4 +1,4 @@
-Greetings
+*Greetings*
 
 The current project is a prototype for an urban janitory system. I've already have done a project for 
 this business case but code grew a little bit complex and i haven't the guts to touch it again. 
