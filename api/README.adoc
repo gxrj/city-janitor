@@ -1,3 +1,15 @@
+=== Project Structure
+
+- "core" folder: contains all entity directories. As it follows a domain driven development 
+approach, an entity directory groups all layers that related to the respective entity.
+
+- "security" folder: is self explanatory. Handles signing application keys that are stored 
+in the database.
+
+- "seed" folder: contains code that initialize some load into the database.
+
+- "utils" folder: self explanatory.
+
 === Observations
 
 At the moment there is no token rotation strategy and its lifetime is 8 hours long.
