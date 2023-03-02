@@ -1,6 +1,8 @@
 package io.github.gxrj.janitory.security.token;
 
 import java.time.Instant;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -53,11 +55,14 @@ public class TokenController {
 
     private String buildTokenFromEntity( PubAgent account, long secondsToLive ) {
         var username = account.getLogin();
-        var roles = account.isAdmin() ? "ROLE_ADMIN ROLE_AGENT" : "ROLE_AGENT";
-        return generateToken( username, roles, secondsToLive );
+        var claims = new HashMap<String, Object>();
+        claims.put( "name", account.getName() );
+        claims.put( "dept", account.getDept() );
+        claims.put( "roles", buildRolesByAccount( account ) );
+        return generateToken( username, claims, secondsToLive );
     }
 
-    private String generateToken( String username, String roles, long secondsToLive ) {
+    private String generateToken( String username, Map<String,Object> attributes, long secondsToLive ) {
 
         var now = Instant.now();
         var expirationTime = now.plusSeconds( secondsToLive );
@@ -66,10 +71,14 @@ public class TokenController {
                                 .issuedAt( now )
                                 .issuer( "self" )
                                 .subject( username )
-                                .claim( "roles", roles )
-                                .expiresAt( expirationTime )
-                                .build();
+                                .expiresAt( expirationTime );
 
-        return jwtEncoder.encode( JwtEncoderParameters.from( claims ) ).getTokenValue();
+        attributes.forEach( (key, value) -> claims.claim( key, value ) );
+
+        return jwtEncoder.encode( JwtEncoderParameters.from( claims.build() ) ).getTokenValue();
+    }
+
+    private String buildRolesByAccount( PubAgent account) {
+        return account.isAdmin() ? "ROLE_ADMIN ROLE_AGENT" : "ROLE_AGENT";
     }
 }
