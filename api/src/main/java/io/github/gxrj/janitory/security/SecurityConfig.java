@@ -18,6 +18,7 @@ import java.util.HashMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.User;
@@ -33,6 +34,7 @@ import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
+@Order(2)
 @Configuration
 public class SecurityConfig {
     
@@ -50,8 +52,6 @@ public class SecurityConfig {
         http.authorizeHttpRequests( 
             authorize -> authorize
                 .requestMatchers( "/anonymous**", "/token**" ).permitAll()
-                .requestMatchers( "/user**" ).hasRole( "CITIZEN" )
-                .requestMatchers( "/authenticated**" ).hasAnyRole( "ADMIN", "AGENT", "CITIZEN" )
                 .requestMatchers( "/agent**" ).hasAnyRole( "ADMIN", "AGENT" )
                 .requestMatchers( "/manager**" ).hasRole( "ADMIN" )
                 .anyRequest().authenticated()

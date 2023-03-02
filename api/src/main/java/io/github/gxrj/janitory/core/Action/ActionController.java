@@ -55,7 +55,7 @@ public class ActionController {
         }
     }
 
-    @PostMapping( "/authenticated/action/all_by_call" )
+    @PostMapping( { "/agent/action/all_by_call", "/user/action/all_by_call" } )
     public List<ActionDto> listByCall( CallDto dto ) {
         return listSerialization( 
                     actionService.listByCall( dto.getProtocol() ) );
