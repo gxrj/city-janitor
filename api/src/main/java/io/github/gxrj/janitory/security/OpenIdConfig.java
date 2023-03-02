@@ -12,7 +12,12 @@ public class OpenIdConfig {
 
     @Bean
     SecurityFilterChain oidcFilterChain( HttpSecurity http ) throws Exception {
-        http.securityMatcher( "/user**" );
+        http.securityMatcher( "/user**" )
+            .oauth2ResourceServer( 
+                config -> 
+                    config.jwt()
+                            .jwkSetUri( "https://accounts.google.com/.well-known/openid-configuration" ) 
+            );
         return http.build();
     }
 }

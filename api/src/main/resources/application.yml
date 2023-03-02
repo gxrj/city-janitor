@@ -1,9 +1,4 @@
 spring:
-    security:
-        oauth2:
-            resourceserver:
-                jwt:
-                    jwk-set-uri: https://accounts.google.com/.well-known/openid-configuration
     datasource:
         username: sa
         password:
