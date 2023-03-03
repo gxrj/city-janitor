@@ -1,8 +1,10 @@
-package io.github.gxrj.janitory.app;
+package io.github.gxrj.janitory.app.ui;
 
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import io.github.gxrj.janitory.app.R;
 
 public class MainActivity extends AppCompatActivity {
 
