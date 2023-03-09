@@ -29,7 +29,7 @@
         android:layout_marginStart="44dp"
         android:layout_marginBottom="390dp"
         android:contentDescription="@string/annonymous_mode_label"
-        tools:src="@drawable/incognito" />
+        app:srcCompat="@drawable/incognito" />
 
     <ImageButton
         android:id="@+id/imageButton2"
@@ -40,7 +40,7 @@
         android:layout_marginEnd="44dp"
         android:layout_marginBottom="390dp"
         android:contentDescription="@string/authenticated_mode_label"
-        tools:src="@drawable/authenticated" />
+        app:srcCompat="@drawable/authenticated" />
 
     <TextView
         android:id="@+id/textView1"
