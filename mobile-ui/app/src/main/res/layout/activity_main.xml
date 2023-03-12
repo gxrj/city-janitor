@@ -26,17 +26,17 @@
         android:orientation="horizontal">
 
         <ImageButton
-            android:id="@+id/imageButton"
+            android:id="@+id/anonymousModeButton"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_margin="10dp"
             android:layout_height="match_parent"
             android:layout_gravity="center"
             app:srcCompat="@drawable/incognito"
-            android:contentDescription="@string/annonymous_button"/>
+            android:contentDescription="@string/anonymous_button"/>
 
         <ImageButton
-            android:id="@+id/imageButton2"
+            android:id="@+id/authenticatedModeButton"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_margin="10dp"
@@ -58,7 +58,7 @@
             android:layout_height="match_parent"
             android:textSize="20sp"
             android:gravity="center"
-            android:text="@string/annonymous_mode_label"/>
+            android:text="@string/anonymous_mode_label"/>
 
         <TextView
             android:id="@+id/textView2"

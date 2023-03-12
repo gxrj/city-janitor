@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">Fiscaliza</string>
     <string name="call_mode_question_label">De que forma deseja realizar a ocorrência?</string>
-    <string name="annonymous_button">Prosseguir em anonimato</string>
+    <string name="anonymous_button">Prosseguir em anonimato</string>
     <string name="authenticated_button">Autenticar para prosseguir</string>
-    <string name="annonymous_mode_label">Modo Anônimo</string>
+    <string name="anonymous_mode_label">Modo Anônimo</string>
     <string name="authenticated_mode_label">Modo Autenticado</string>
 </resources>
