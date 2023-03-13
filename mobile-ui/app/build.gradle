@@ -23,8 +23,8 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
 }
 
@@ -32,6 +32,7 @@ dependencies {
     def frag_version = '1.5.5'
     def nav_version = '2.5.3'
     def sso_version = '20.4.1'
+    def okhttp_version = '4.10.0'
 
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.8.0'
@@ -41,6 +42,8 @@ dependencies {
     implementation "androidx.navigation:navigation-fragment:$nav_version"
     // Google Sign-in dependency
     implementation "com.google.android.gms:play-services-auth:$sso_version"
+    // Http client dependency
+    implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
