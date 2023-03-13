@@ -8,6 +8,7 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import io.github.gxrj.janitory.app.R;
 
@@ -40,8 +41,8 @@ public class StartFragment extends Fragment {
     }
 
     private View.OnClickListener proceedAnonymously() {
-        return view ->
-            Toast.makeText( getActivity(), "Anonynous", Toast.LENGTH_SHORT )
-                    .show();
+        return view -> Navigation
+                        .findNavController( view )
+                            .navigate( R.id.action_startFragment_to_homeFragment );
     }
 }
