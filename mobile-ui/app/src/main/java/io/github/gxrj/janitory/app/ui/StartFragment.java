@@ -22,8 +22,11 @@ public class StartFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView( LayoutInflater inflater, ViewGroup container, Bundle savedInstance ) {
-        View view = inflater.inflate( R.layout.fragment_start, container, false );
+    public View onCreateView(
+            LayoutInflater inflater, ViewGroup container, Bundle savedInstance ) {
+
+        View view = inflater.inflate(
+                                R.layout.fragment_start, container, false );
 
         ImageButton authBtn = view.findViewById( R.id.authenticatedModeButton );
         ImageButton anonymousBtn = view.findViewById( R.id.anonymousModeButton );
@@ -43,6 +46,6 @@ public class StartFragment extends Fragment {
     private View.OnClickListener proceedAnonymously() {
         return view -> Navigation
                         .findNavController( view )
-                            .navigate( R.id.action_startFragment_to_homeFragment );
+                            .navigate( R.id.homeFragment );
     }
 }
