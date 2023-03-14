@@ -48,7 +48,7 @@ public class HomeFragment extends Fragment  {
 
     private void fetchData() {
         var params = new HashMap<String, String>();
-        params.put( "url", "http://localhost:8080/anonymous/category/all" );
+        params.put( "url", "http://10.0.2.2:8080/anonymous/category/all" );
         params.put( "method", "GET" );
 
         try {
