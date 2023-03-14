@@ -5,5 +5,5 @@
 - OkHttpClient
 
 ### To do:
-[ ] Set security policy into resources folder (res)
-[ ] Fix performance on its main thread
+-[ ] Set security policy into resources folder (res)
+-[ ] Fix performance on its main thread
