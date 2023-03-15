@@ -14,13 +14,6 @@ import io.github.gxrj.janitory.app.R;
 
 public class StartFragment extends Fragment {
 
-    public StartFragment() {}
-
-    @Override
-    public void onCreate( Bundle savedInstance ) {
-        super.onCreate( savedInstance );
-    }
-
     @Override
     public View onCreateView(
             LayoutInflater inflater, ViewGroup container, Bundle savedInstance ) {

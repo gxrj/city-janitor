@@ -1,62 +1,67 @@
 package io.github.gxrj.janitory.app.http;
 
-import org.json.JSONObject;
+import androidx.annotation.NonNull;
 
 import java.io.IOException;
 import java.util.Map;
+import java.util.function.BiConsumer;
 
+import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
-import okhttp3.Request;
 import okhttp3.RequestBody;
+import okhttp3.Response;
 
-public class Client {
+public class Client implements Callback {
 
     private static final OkHttpClient client = new OkHttpClient();
+    private BiConsumer<Call, IOException> onFailureClbk;
+    private BiConsumer<Call, Response> onResponseClbk;
 
-    public static JSONObject sendMessage( Map<String, String> params ) throws Exception {
-        return sendMessage( params, null );
+    Client() {}
+
+    public static Client builder() {
+        return new Client();
     }
 
-    public static JSONObject sendMessage(
-            Map<String, String> params, RequestBody requestBody ) throws Exception {
-
-        var request = buildRequest( params, requestBody );
-
-        try ( var response = client.newCall( request ).execute() ) {
-            if( !response.isSuccessful() ) throw new IOException( "Error: " + response );
-            return response.body() != null ?
-                        new JSONObject( response.body().toString() ) : null ;
-        }
+    public void sendMessage( Map<String, String> params ) throws Exception {
+        sendMessage( params, null );
     }
 
-    private static Request buildRequest(
+    public void sendMessage(
             Map<String, String> params, RequestBody requestBody ) throws Exception {
+        checkCallbacks();
+        var request = RequestBuilder.build( params, requestBody );
+        client.newCall( request )
+                .enqueue( this );
+    }
 
-        var url = params.get( "url" );
+    public Client onFailure( BiConsumer<Call, IOException> onFailureClbk ) {
+        this.onFailureClbk = onFailureClbk;
+        return this;
+    }
 
-        if( url == null )
-            throw new Exception( "URL must be specified!" );
+    public Client onResponse( BiConsumer<Call, Response> onResponseClbk ) {
+        this.onResponseClbk = onResponseClbk;
+        return this;
+    }
 
-        var builder = new Request.Builder();
-        var method = params.get( "method" );
-        var accept = params.get( "accept" );
-        var contentType = params.get( "content-type" );
-        var authorization = params.get( "authorization" );
+    @Override
+    public void onFailure( @NonNull Call call, @NonNull  IOException ex ) {
+        onFailureClbk.accept( call, ex );
+    }
 
-        if( accept == null ) accept = "*/*";
-        if( method == null ) method = "GET";
+    @Override
+    public void onResponse(
+            @NonNull Call call, @NonNull Response response ) {
+        onResponseClbk.accept( call, response );
+    }
 
-        builder.method( method, requestBody );
-        builder.addHeader( "Accept", accept );
-
-        if( contentType != null )
-            builder.addHeader( "Content-Type", contentType );
-        if( authorization != null )
-            builder.addHeader( "Authorization", authorization );
-
-        builder.url( url );
-
-        return builder.build();
+    /**
+     * If a callback is null sets a function that does nothing.
+     * */
+    private void checkCallbacks() {
+        if( onFailureClbk == null ) onFailureClbk = ( call, error ) -> {};
+        if( onResponseClbk == null ) onResponseClbk = ( call, response ) -> {};
     }
 }
