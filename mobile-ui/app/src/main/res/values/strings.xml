@@ -5,6 +5,6 @@
     <string name="authenticated_button">Autenticar para prosseguir</string>
     <string name="anonymous_mode_label">Modo Anônimo</string>
     <string name="authenticated_mode_label">Modo Autenticado</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="home_fragment_question">Selecione a categoria de serviço</string>
 </resources>

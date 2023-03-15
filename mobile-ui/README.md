@@ -1,6 +1,7 @@
 ## This is an native android app project
 
 ### Used tools:
+- Sdk 33 ( with backward compatibility with api 28 )
 - Java 11
 - OkHttpClient
 
