@@ -24,7 +24,6 @@ import io.github.gxrj.janitory.app.http.Client;
 public class HomeFragment extends Fragment  {
     //Todo: fix this junky code
     private TextView messageLogger;
-    private JSONArray categories;
 
     @Override
     public View onCreateView(
@@ -66,7 +65,7 @@ public class HomeFragment extends Fragment  {
                     if( resp.isSuccessful() && resp.body() != null ) {
                         try{
                             /* Todo: Add a keypair json even for array results spilled from the api*/
-                            categories = new JSONArray( resp.body().source().readUtf8() );
+                            var categories = new JSONArray( resp.body().source().readUtf8() );
                             listLayout.post( () ->  messageLogger.setText( categories.toString() ) );
                         } catch ( IOException | JSONException ex ) {
                             messageLogger
