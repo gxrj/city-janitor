@@ -58,7 +58,7 @@ public class Client implements Callback {
     }
 
     /**
-     * If a callback is null sets a function that does nothing.
+     * Sets a function that does nothing for each null callback.
      * */
     private void checkCallbacks() {
         if( onFailureClbk == null ) onFailureClbk = ( call, error ) -> {};

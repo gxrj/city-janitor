@@ -29,7 +29,7 @@ public class HomeFragment extends Fragment  {
         var view = inflater.inflate( R.layout.fragment_home, container, false );
         textView = view.findViewById( R.id.homeText );
 
-        try{
+        try {
             fetchData();
         }
         catch ( Exception ex ) {
@@ -51,18 +51,18 @@ public class HomeFragment extends Fragment  {
                 ( call, resp ) -> {
                     if( resp.isSuccessful() && resp.body() != null ) {
                         try{
-                            /* To do: Add a keypair json even for array results spilled from
-                             * the api*/
+                            /* To do: Add a keypair json even for array results spilled from the api*/
                             var jsonArray = new JSONArray( resp.body().source().readUtf8() );
-                            setTextView( jsonArray.toString() );
+                            textView.setText( jsonArray.toString() );
                         } catch ( IOException | JSONException ex ) {
-                            setTextView( "Parsing error! "+ ex.getMessage() );
+                            textView
+                                .setText( String.format( "Parsing error: %s",ex.getMessage() ) );
                         }
                     }
                     if( !resp.isSuccessful() )
-                        setTextView( String.format( "Http status: %s", resp.code() ) );
+                        textView.setText( String.format( "Http status: %s", resp.code() ) );
                     if( resp.body() == null )
-                        setTextView( "Null response body" );
+                        textView.setText( "Null response body" );
                 }
             )
             .onFailure(
@@ -70,9 +70,5 @@ public class HomeFragment extends Fragment  {
                     textView.setText( String.format( "Error: %s", error.getMessage() ) )
             )
             .sendMessage( params );
-    }
-
-    private void setTextView( String result ) {
-        textView.setText( result );
     }
 }
