@@ -52,7 +52,7 @@ public class HomeFragment extends Fragment  {
     private void buildButtonList( ViewGroup listLayout ) {
         try {
             fetchData();
-
+            /* Todo: Solve the access to categories attributes before it's complete.
             var row = buildRow();
 
             for(  int i = 0; i < categories.length(); i++ ) {
@@ -66,7 +66,7 @@ public class HomeFragment extends Fragment  {
                     listLayout.addView( row );
                     row = buildRow();
                 }
-            }
+            }*/
         }
         catch ( Exception ex ) {
             Toast.makeText( getActivity(), ex.getMessage(), Toast.LENGTH_LONG ).show();
