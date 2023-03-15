@@ -22,7 +22,7 @@ import io.github.gxrj.janitory.app.R;
 import io.github.gxrj.janitory.app.http.Client;
 
 public class HomeFragment extends Fragment  {
-
+    //Todo: fix this junky code
     private TextView messageLogger;
     private JSONArray categories;
 
@@ -34,8 +34,12 @@ public class HomeFragment extends Fragment  {
         var listLayout = ( LinearLayout ) view.findViewById( R.id.homeCategoriesList );
 
         buildMessageLogger( listLayout );
-        buildButtonList( listLayout );
-
+        try {
+            fetchData( listLayout );
+        }
+        catch ( Exception ex ) {
+            Toast.makeText( getActivity(), ex.getMessage(), Toast.LENGTH_LONG ).show();
+        }
         return view;
     }
 
@@ -49,52 +53,7 @@ public class HomeFragment extends Fragment  {
         listLayout.addView( messageLogger );
     }
 
-    private void buildButtonList( ViewGroup listLayout ) {
-        try {
-            fetchData();
-            /* Todo: Solve the access to categories attributes before it's complete.
-            var row = buildRow();
-
-            for(  int i = 0; i < categories.length(); i++ ) {
-                var btn = buildButton( categories.getJSONObject( i ).toString() );
-                row.addView( btn );
-                // flushes the row if its the last element
-                if( i + 1 == categories.length() ) listLayout.addView( row );
-                // otherwise if the row have 3 buttons, flushes the same
-                // row and creates a new one for the remaining elements
-                else if( row.getChildCount() == 3 ) {
-                    listLayout.addView( row );
-                    row = buildRow();
-                }
-            }*/
-        }
-        catch ( Exception ex ) {
-            Toast.makeText( getActivity(), ex.getMessage(), Toast.LENGTH_LONG ).show();
-        }
-    }
-
-    private Button buildButton( String btnLabel ) {
-        var btn = new Button( getContext() );
-        var btnParams = new LinearLayout
-                .LayoutParams( 0, ViewGroup.LayoutParams.WRAP_CONTENT, 1.0f );
-        btnParams.setMargins( 5, 5, 5, 5 );
-        btn.setText( btnLabel );
-        btn.setLayoutParams( btnParams );
-        btn.setGravity( Gravity.CENTER );
-        // Todo: Add event listener
-        return btn;
-    }
-
-    private LinearLayout buildRow() {
-        var row = new LinearLayout( getContext() );
-        var rowParams = new LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT, 0, 1.0f );
-        row.setLayoutParams( rowParams );
-        row.setOrientation( LinearLayout.HORIZONTAL );
-        return row;
-    }
-
-    private void fetchData() throws Exception {
+    private void fetchData( ViewGroup listLayout ) throws Exception {
 
         var params = new HashMap<String, String>();
         params.put( "url", "http://10.0.2.2:8080/anonymous/category/all" );
@@ -108,6 +67,7 @@ public class HomeFragment extends Fragment  {
                         try{
                             /* Todo: Add a keypair json even for array results spilled from the api*/
                             categories = new JSONArray( resp.body().source().readUtf8() );
+                            listLayout.post( () ->  messageLogger.setText( categories.toString() ) );
                         } catch ( IOException | JSONException ex ) {
                             messageLogger
                                 .setText( String.format( "Parsing error: %s",ex.getMessage() ) );
