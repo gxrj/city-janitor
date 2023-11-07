@@ -31,16 +31,6 @@ district), manage the scope of services (*duties*) provided to the users.
 
 === Stack used:
 
-- Spring boot;
-- Spring Security;
-- JUnit; ( in attempt to add usefull tests and not deleting them )
-- Nuxtjs;
-- Android development platform ( maybe will be switched to Nativescript or Ionic );
-
 === Project Structure:
-
-- link:api[api] ( relies backend logic );
-- link:mobile-ui[mobile-ui] ( self explanatory );
-- link:web-ui[web-ui] ( same as the previous item );
 
 There are lots of work to be done
