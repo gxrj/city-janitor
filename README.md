@@ -109,7 +109,7 @@ classDiagram
     Action "0..*" --> "1" Call
     Action "0..*" --> "1" PubAgent
     Address "1..*" --> "1" District
-    Dept "1" <-- "1..*" PubAgent
+    Dept "1" <-- "*" PubAgent
     Duty "1..*" --> "1" Dept
     Duty "1..*" --> "1" Category
 ```
