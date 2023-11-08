@@ -11,7 +11,7 @@ In this approach i'm trying to provide all required features by writing the less
 
 ![](assets/topology.png)
 
-- Mobile project
+- [Mobile](mobile/README.md) project
 - Web project
 - Api project
 
