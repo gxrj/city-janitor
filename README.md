@@ -28,7 +28,7 @@ Basically they will fill up a form that some fields contains pre-defined fields 
 avoid ambiquity, also they can provide images and its location can be geo localized.
 
 - *Public Agent*: Individuals that are employees of the city hall who provide their service 
-to meets the city popultaion needs. The city hall provides a enough amount of computer devices 
+to meets the city popultaion needs. The city hall provides an enough amount of computer devices 
 to be used as a work tool so the system can be accessible for them as a web application. 
 It's interesting to manage this type of user internally and manage it's authentication locally.
 Some public agents can have admin privileges. Public agents are tied to only one *department*. 
