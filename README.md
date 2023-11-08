@@ -107,7 +107,7 @@ classDiagram
     Call "1..*" --> "1" Dept
     Call "1..*" --> "1" Duty
     Action "0..*" --> "1" Call
-    Action "0..*" --> PubAgent
+    Action "0..*" --> "1" PubAgent
     Address "1..*" --> "1" District
     Dept "1" <-- "1..*" PubAgent
     Duty "1..*" --> "1" Dept
