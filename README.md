@@ -35,7 +35,7 @@ Some public agents can have admin privileges. Public agents are tied to only one
 The core task for the agent is to create an *action* to solve a citizen *call*.
 
 - *Admin*: Admins are a special type of public agent. The can be tied to one department or not.
-Their task are to manage *departments*, other agent *accounts* (according with the tied department 
+Their tasks are to manage *departments*, other agent *accounts* (according with the tied department 
 to admin, if tied), get some metrics like calls of a particular *address*(zip code, public place, 
 district), manage the scope of services (*duties*) provided to the users.
 
