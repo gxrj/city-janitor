@@ -4,15 +4,51 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/city_wallpaper"
     tools:context=".MainActivity">
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Welcome to janitory!"
+        android:id="@+id/title"
+        android:layout_width="272dp"
+        android:layout_height="102dp"
+        android:background="@drawable/title_background"
+        android:text="@string/title"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="42sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.26" />
+
+    <Button
+        android:id="@+id/anonymous_btn"
+        android:layout_width="313dp"
+        android:layout_height="88dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginBottom="52dp"
+        android:backgroundTint="#99acacac"
+        android:drawableLeft="@drawable/anonymous"
+        android:text="@string/anonymous_btn"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/authenticated_btn"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/authenticated_btn"
+        android:layout_width="313dp"
+        android:layout_height="88dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginBottom="92dp"
+        android:text="@string/authenticated_btn"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:drawableLeft="@drawable/authenticated"
+        android:backgroundTint="#99acacac"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
