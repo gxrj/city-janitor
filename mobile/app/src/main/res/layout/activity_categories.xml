@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.activities.CategoriesActivity">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/materialToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#6C6C6C"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:titleCentered="true">
+        <LinearLayout
+            android:id="@+id/top_bar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/back_btn"
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:backgroundTint="#6C6C6C"
+                android:text="."
+                app:iconSize="30sp"
+                app:iconTint="@color/white"
+                app:iconGravity="textStart"
+                app:icon="@drawable/ic_left_arrow"/>
+
+            <TextView
+                android:id="@+id/category_selection_title"
+                android:layout_width="323dp"
+                android:layout_height="match_parent"
+                android:paddingVertical="10sp"
+                android:text="@string/category_selection"
+                android:textColor="@color/white"
+                android:textSize="25sp" />
+        </LinearLayout>
+    </com.google.android.material.appbar.MaterialToolbar>
+
+    <ListView
+        android:id="@+id/categories"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+    </ListView>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

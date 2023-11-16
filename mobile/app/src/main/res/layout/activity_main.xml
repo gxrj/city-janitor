@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/city_wallpaper"
-    tools:context=".MainActivity">
+    android:background="@drawable/wpp_city"
+    tools:context=".ui.activities.MainActivity">
 
     <TextView
         android:id="@+id/title"
         android:layout_width="272dp"
         android:layout_height="102dp"
-        android:background="@drawable/title_background"
+        android:background="@drawable/bg_title"
         android:text="@string/title"
         android:textAlignment="center"
         android:textColor="@color/black"
@@ -29,11 +29,13 @@
         android:layout_height="88dp"
         android:layout_marginStart="48dp"
         android:layout_marginBottom="52dp"
-        android:backgroundTint="#99acacac"
-        android:drawableLeft="@drawable/anonymous"
+        android:backgroundTint="@color/custom_alpha"
         android:text="@string/anonymous_btn"
         android:textSize="20sp"
         android:textColor="@color/black"
+        app:iconSize="54sp"
+        app:iconTint="@color/black"
+        app:icon="@drawable/ic_anonymous"
         app:layout_constraintBottom_toTopOf="@+id/authenticated_btn"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -46,8 +48,10 @@
         android:text="@string/authenticated_btn"
         android:textSize="20sp"
         android:textColor="@color/black"
-        android:drawableLeft="@drawable/authenticated"
-        android:backgroundTint="#99acacac"
+        android:backgroundTint="@color/custom_alpha"
+        app:iconSize="54sp"
+        app:iconTint="@color/black"
+        app:icon="@drawable/ic_authenticated"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 

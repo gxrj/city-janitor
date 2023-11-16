@@ -3,4 +3,6 @@
     <string name="title">Zeladoria urbana</string>
     <string name="anonymous_btn">Realizar ocorrência anônima</string>
     <string name="authenticated_btn">Realizar ocorrência autenticada</string>
+    <string name="category_selection">Selecione uma categoria</string>
+    <string name="back">Retornar</string>
 </resources>
