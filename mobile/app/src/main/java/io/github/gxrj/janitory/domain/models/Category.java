@@ -13,8 +13,14 @@ public class Category {
     private Long id;
     private String name;
 
+    private List<Duty> duties;
+
     public Long getId() {
         return id;
+    }
+
+    public List<Duty> getDuties() {
+        return duties;
     }
 
     public void setId( Long id ) {
@@ -25,13 +31,18 @@ public class Category {
         this.name = name;
     }
 
+    public void setDuties( List<Duty> duties ) {
+        this.duties = duties;
+    }
+
     public static List<Category> fromJsonArray( JSONArray array ) throws JSONException  {
         List<Category> list = new ArrayList<>();
 
-        for( int i = 0; i < array.length(); i++ ) {
-            JSONObject item = array.getJSONObject( i );
-            list.add( Category.fromJsonObject( item ) );
-        }
+        if( array != null )
+            for( int i = 0; i < array.length(); i++ ) {
+                JSONObject item = array.getJSONObject( i );
+                list.add( Category.fromJsonObject( item ) );
+            }
 
         return list;
     }
@@ -40,6 +51,7 @@ public class Category {
         Category c = new Category();
         c.setId( json.getLong( "id" ) );
         c.setName( json.getString( "name" ) );
+        c.setDuties( Duty.fromJsonArray( json.getJSONArray( "duties" ) ) );
         return c;
     }
 

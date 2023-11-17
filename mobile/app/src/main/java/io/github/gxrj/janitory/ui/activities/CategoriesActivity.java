@@ -24,6 +24,7 @@ import java.util.List;
 
 import io.github.gxrj.janitory.R;
 import io.github.gxrj.janitory.domain.models.Category;
+import io.github.gxrj.janitory.domain.models.Duty;
 
 public class CategoriesActivity extends AppCompatActivity {
 
@@ -31,11 +32,11 @@ public class CategoriesActivity extends AppCompatActivity {
     protected void onCreate( Bundle savedInstanceState ) {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_categories );
-        initListContent();
+        render();
         setListeners();
     }
 
-    private void initListContent() {
+    private void render() {
         String plainJson = getData().getString( "data" );
 
         try {
@@ -71,7 +72,17 @@ public class CategoriesActivity extends AppCompatActivity {
 
     private void proceedToDutiesActivity( AdapterView<?> parent, int position ) {
         Category category = ( Category ) parent.getItemAtPosition( position );
-        Log.d( "item selected", "" + category );
-    }
+        Intent dutiesActivity = new Intent( this, DutiesActivity.class );
+        try {
+            String plainList = Duty.fromListToJsonArray( category.getDuties() ).toString();
 
+            dutiesActivity.putExtra( "category", category.toString() );
+            dutiesActivity.putExtra( "duties", plainList );
+
+            startActivity( dutiesActivity );
+        }
+        catch( JSONException e ) {
+            Log.e( "error", "JSONException at Duties list conversion to JsonArray" );
+        }
+    }
 }
