@@ -17,26 +17,6 @@ public class Category {
 
     private List<Duty> duties;
 
-    public Long getId() {
-        return id;
-    }
-
-    public List<Duty> getDuties() {
-        return duties;
-    }
-
-    public void setId( Long id ) {
-        this.id = id;
-    }
-
-    public void setName( String name ) {
-        this.name = name;
-    }
-
-    public void setDuties( List<Duty> duties ) {
-        this.duties = duties;
-    }
-
     public static List<Category> fromJsonArray( JSONArray array ) throws JSONException  {
         List<Category> list = new ArrayList<>();
 
@@ -65,9 +45,29 @@ public class Category {
         return new JSONObject( plainJson );
     }
 
-    public static Category fromJsonString( @NonNull String plainJson ) throws JSONException {
+    public static Category fromJsonString( String plainJson ) throws JSONException {
         JSONObject json = new JSONObject( plainJson );
         return Category.fromJsonObject( json );
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public List<Duty> getDuties() {
+        return duties;
+    }
+
+    public void setId( Long id ) {
+        this.id = id;
+    }
+
+    public void setName( String name ) {
+        this.name = name;
+    }
+
+    public void setDuties( List<Duty> duties ) {
+        this.duties = duties;
     }
 
     @NonNull

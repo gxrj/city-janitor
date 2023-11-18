@@ -47,6 +47,14 @@ public class Duty {
         return "["+ plainJson + "]";
     }
 
+    public static String toPlainJson( Duty d, Category c ) {
+        return "{\"id\":"+d.id+",\"name\":\""+d.name+"\",\"category\":\""+c+"\"}";
+    }
+
+    public Long getId() {
+        return id;
+    }
+
     @NonNull
     public String toString(){
         return name;

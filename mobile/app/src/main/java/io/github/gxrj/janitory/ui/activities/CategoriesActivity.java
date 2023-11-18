@@ -3,28 +3,22 @@ package io.github.gxrj.janitory.ui.activities;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.graphics.Color;
+
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.view.ViewGroup;
+
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import io.github.gxrj.janitory.R;
 import io.github.gxrj.janitory.domain.models.Category;
-import io.github.gxrj.janitory.domain.models.Duty;
 
 public class CategoriesActivity extends AppCompatActivity {
 
@@ -57,7 +51,7 @@ public class CategoriesActivity extends AppCompatActivity {
 
         ArrayAdapter<Category> adapter =
                 new ArrayAdapter<>(
-                        this, R.layout.categories_item, R.id.category_name, list );
+                        this, R.layout.item_categories, R.id.category_name, list );
         listView.setAdapter( adapter );
     }
 

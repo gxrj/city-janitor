@@ -15,6 +15,10 @@
         android:theme="@style/Theme.Janitory"
         tools:targetApi="31">
         <activity
+            android:name=".ui.activities.CallFormActivity"
+            android:exported="false"
+            android:parentActivityName=".ui.activities.DutiesActivity" />
+        <activity
             android:name=".ui.activities.DutiesActivity"
             android:exported="false"
             android:parentActivityName=".ui.activities.CategoriesActivity" />

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.activities.CallFormActivity">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/materialToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#6C6C6C"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:titleCentered="true">
+
+        <LinearLayout
+            android:id="@+id/top_bar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/back_btn"
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:backgroundTint="#6C6C6C"
+                android:contentDescription="@string/back"
+                app:iconSize="30sp"
+                app:iconTint="@color/white"
+                app:iconGravity="textStart"
+                app:icon="@drawable/ic_left_arrow"/>
+
+            <TextView
+                android:id="@+id/category_selected"
+                android:layout_width="323dp"
+                android:layout_height="match_parent"
+                android:paddingVertical="10sp"
+                android:text="@string/call_form_title"
+                android:textColor="@color/white"
+                android:textSize="25sp" />
+        </LinearLayout>
+    </com.google.android.material.appbar.MaterialToolbar>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="32dp"
+        android:layout_marginHorizontal="10sp"
+        android:text="@string/duty_field_label"
+        android:textSize="26sp"/>
+
+    <EditText
+        android:id="@+id/duty_form_field"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginHorizontal="10sp"
+        android:hint="@string/duty_field_label"
+        android:autofillHints="Nome do Serviço"
+        android:textColor="#353535"
+        android:inputType="text"
+        android:clickable="false"
+        android:cursorVisible="false"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:textSize="32sp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="32dp"
+        android:layout_marginHorizontal="10sp"
+        android:layout_marginTop="15sp"
+        android:text="@string/address_field_label"
+        android:textSize="26sp"/>
+
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/gps_switch"
+        android:layout_width="200sp"
+        android:layout_height="48sp"
+        android:layout_marginHorizontal="10sp"
+        android:textSize="20sp"
+        android:text="@string/gps_switch_label" />
+
+</androidx.appcompat.widget.LinearLayoutCompat>
