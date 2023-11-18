@@ -11,10 +11,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.List;
 
 import io.github.gxrj.janitory.R;
+import io.github.gxrj.janitory.domain.models.Category;
 import io.github.gxrj.janitory.domain.models.Duty;
 
 public class DutiesActivity  extends AppCompatActivity {
@@ -29,13 +31,12 @@ public class DutiesActivity  extends AppCompatActivity {
 
     private void render() {
         TextView tv = findViewById( R.id.category_selected );
-        tv.setText( getData().getString( "category" ) );
-
-        String plainJson = getData().getString( "duties" );
+        String plainCategory = getData().getString( "category" );
 
         try {
-            JSONArray array = new JSONArray( plainJson );
-            populateList( array );
+            Category c = Category.fromJsonString( plainCategory );
+            tv.setText( c.toString() );
+            populateList( c.getDuties() );
         }
         catch( JSONException e) {
             Log.e( "error", "JSONException at duty list initialization" );
@@ -46,10 +47,9 @@ public class DutiesActivity  extends AppCompatActivity {
         return getIntent().getExtras();
     }
 
-    private void populateList( JSONArray array ) throws JSONException {
+    private void populateList( List<Duty> list ) throws JSONException {
         ListView listView = findViewById( R.id.duties );
-        List<Duty> list = Duty.fromJsonArray( array );
-        Log.d( "list", list.toString() );
+
         ArrayAdapter<Duty> adapter =
                 new ArrayAdapter<>( this, R.layout.duties_item, R.id.duty_name, list );
         listView.setAdapter( adapter );

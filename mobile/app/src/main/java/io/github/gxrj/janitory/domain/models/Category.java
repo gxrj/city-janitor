@@ -1,5 +1,7 @@
 package io.github.gxrj.janitory.domain.models;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 
 import org.json.JSONArray;
@@ -53,6 +55,19 @@ public class Category {
         c.setName( json.getString( "name" ) );
         c.setDuties( Duty.fromJsonArray( json.getJSONArray( "duties" ) ) );
         return c;
+    }
+
+    public static JSONObject toJsonObject( Category c ) throws JSONException {
+        String plainJson = "{ \"id\":" + c.getId() +
+                            ",\"name\":\"" + c +
+                            "\",\"duties\":" + Duty.fromListToString( c.getDuties() ) + "}";
+        Log.d( "category", plainJson );
+        return new JSONObject( plainJson );
+    }
+
+    public static Category fromJsonString( @NonNull String plainJson ) throws JSONException {
+        JSONObject json = new JSONObject( plainJson );
+        return Category.fromJsonObject( json );
     }
 
     @NonNull

@@ -36,15 +36,15 @@ public class Duty {
         return new Duty( json.getLong( "id" ), json.getString( "name" ) );
     }
 
-    public static JSONArray fromListToJsonArray( List<Duty> list ) throws JSONException {
+    public static String fromListToString( List<Duty> list ) {
         BinaryOperator<String> accumulator = ( partialString, el ) ->
-                                                partialString.equals( "" ) ?
-                                                        el : partialString + "," + el;
+                partialString.equals( "" ) ?
+                        el : partialString + "," + el;
         String plainJson = list.stream()
-                                .map( el -> "{\"id\":"+el.id+",\"name\":\""+el.name+"\"}" )
-                                .reduce( "", accumulator );
+                .map( el -> "{\"id\":"+el.id+",\"name\":\""+el.name+"\"}" )
+                .reduce( "", accumulator );
 
-        return new JSONArray( "["+ plainJson + "]" );
+        return "["+ plainJson + "]";
     }
 
     @NonNull

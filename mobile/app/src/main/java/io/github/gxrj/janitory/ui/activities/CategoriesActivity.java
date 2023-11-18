@@ -73,12 +73,10 @@ public class CategoriesActivity extends AppCompatActivity {
     private void proceedToDutiesActivity( AdapterView<?> parent, int position ) {
         Category category = ( Category ) parent.getItemAtPosition( position );
         Intent dutiesActivity = new Intent( this, DutiesActivity.class );
+
         try {
-            String plainList = Duty.fromListToJsonArray( category.getDuties() ).toString();
-
-            dutiesActivity.putExtra( "category", category.toString() );
-            dutiesActivity.putExtra( "duties", plainList );
-
+            String categoryJson = Category.toJsonObject( category ).toString();
+            dutiesActivity.putExtra( "category", categoryJson );
             startActivity( dutiesActivity );
         }
         catch( JSONException e ) {
