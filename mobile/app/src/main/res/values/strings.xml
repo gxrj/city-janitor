@@ -10,4 +10,11 @@
     <string name="duty_field_label">Serviço</string>
     <string name="address_field_label">Endereço</string>
     <string name="gps_switch_label">Ativar GPS</string>
+    <string name="zip_code_field_label">Cep</string>
+    <string name="district_field_label">Bairro</string>
+    <string name="pub_place_field_label">Logradouro</string>
+    <string name="number_field_label">Nº</string>
+    <string name="description_field_label">Descrição</string>
+    <string name="add_image_btn">Adicionar Imagens</string>
+
 </resources>
