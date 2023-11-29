@@ -7,8 +7,6 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.material.switchmaterial.SwitchMaterial;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -44,8 +42,5 @@ public class CallFormActivity extends AppCompatActivity {
     private void setListeners() {
         Button backBtn = findViewById( R.id.back_btn );
         backBtn.setOnClickListener( view -> finish() );
-
-        SwitchMaterial gpsSwitch = findViewById( R.id.gps_switch );
-        gpsSwitch.setOnClickListener( view -> {} ); //TODO:
     }
 }

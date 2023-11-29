@@ -1,7 +1,5 @@
 package io.github.gxrj.janitory.domain.models;
 
-import android.util.Log;
-
 import androidx.annotation.NonNull;
 
 import org.json.JSONArray;
@@ -41,7 +39,7 @@ public class Category {
         String plainJson = "{ \"id\":" + c.getId() +
                             ",\"name\":\"" + c +
                             "\",\"duties\":" + Duty.fromListToString( c.getDuties() ) + "}";
-        Log.d( "category", plainJson );
+
         return new JSONObject( plainJson );
     }
 

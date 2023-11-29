@@ -75,14 +75,6 @@
         android:text="@string/address_field_label"
         android:textSize="26sp"/>
 
-    <com.google.android.material.switchmaterial.SwitchMaterial
-        android:id="@+id/gps_switch"
-        android:layout_width="200sp"
-        android:layout_height="48sp"
-        android:layout_marginHorizontal="10sp"
-        android:textSize="25sp"
-        android:text="@string/gps_switch_label" />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -97,17 +89,18 @@
             android:textColor="#353535"
             android:inputType="number"
             android:textSize="32sp"/>
-        <EditText
-            android:id="@+id/district_form_field"
+
+        <Spinner
+            android:id="@+id/district_spinner"
             android:layout_width="0dp"
             android:layout_weight="2"
             android:layout_height="60dp"
+            android:entries="@array/district_field_label"
             android:layout_marginHorizontal="10sp"
-            android:hint="@string/district_field_label"
-            android:autofillHints="Nome do Bairro"
+            android:layout_gravity="center"
+            android:spinnerMode="dropdown"
             android:textColor="#353535"
-            android:inputType="text"
-            android:textSize="32sp"/>
+            app:textSize="32sp"/>
     </LinearLayout>
 
     <LinearLayout
