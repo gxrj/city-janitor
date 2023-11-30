@@ -11,11 +11,11 @@
     <string name="address_field_label">Endereço</string>
     <string name="gps_switch_label">Ativar GPS</string>
     <string name="zip_code_field_label">Cep</string>
-    <string-array name="district_field_label">
-        <item>Bairro</item>
-    </string-array>
+    <string name="district_field_label">Bairro</string>
     <string name="pub_place_field_label">Logradouro</string>
     <string name="number_field_label">Nº</string>
+    <string name="ref_field_label">Referência</string>
     <string name="description_field_label">Descrição</string>
+    <string name="description_field_hint">Informe os detalhes</string>
     <string name="add_image_btn">Adicionar Imagens</string>
 </resources>

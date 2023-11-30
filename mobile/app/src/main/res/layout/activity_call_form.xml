@@ -90,17 +90,25 @@
             android:inputType="number"
             android:textSize="32sp"/>
 
-        <Spinner
-            android:id="@+id/district_spinner"
-            android:layout_width="0dp"
-            android:layout_weight="2"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/district_dropdown_list"
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
             android:layout_height="60dp"
-            android:entries="@array/district_field_label"
-            android:layout_marginHorizontal="10sp"
-            android:layout_gravity="center"
-            android:spinnerMode="dropdown"
-            android:textColor="#353535"
-            app:textSize="32sp"/>
+            android:layout_width="0dp"
+            android:layout_marginEnd="13sp"
+            android:layout_weight="2">
+
+            <AutoCompleteTextView
+                android:id="@+id/district_list_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="none"
+                android:text="@string/district_field_label"
+                android:backgroundTint="@color/white"
+                android:textSize="25sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
     </LinearLayout>
 
     <LinearLayout
@@ -135,12 +143,29 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
         <EditText
+            android:id="@+id/address_ref_form_field"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginHorizontal="10sp"
+            android:hint="@string/ref_field_label"
+            android:autofillHints="Referência"
+            android:textColor="#353535"
+            android:inputType="text"
+            android:textSize="32sp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="32dp"
+            android:layout_marginHorizontal="10sp"
+            android:layout_marginTop="15sp"
+            android:text="@string/description_field_label"
+            android:textSize="26sp"/>
+        <EditText
             android:id="@+id/description_form_field"
             android:layout_width="match_parent"
             android:layout_weight="6"
             android:layout_height="0dp"
             android:layout_marginHorizontal="10sp"
-            android:hint="@string/description_field_label"
+            android:hint="@string/description_field_hint"
             android:autofillHints="Descrição"
             android:textColor="#353535"
             android:inputType="textMultiLine"
