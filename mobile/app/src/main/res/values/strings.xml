@@ -17,5 +17,8 @@
     <string name="ref_field_label">Referência</string>
     <string name="description_field_label">Descrição</string>
     <string name="description_field_hint">Informe os detalhes</string>
-    <string name="add_image_btn">Adicionar Imagens</string>
+    <string name="image_label">Imagem</string>
+    <string name="add_image_btn">Adicionar Imagem</string>
+    <string name="remove_image_btn">Remover Imagem</string>
+    <string name="send_form_btn">Enviar formulário</string>
 </resources>

@@ -45,140 +45,202 @@
         </LinearLayout>
     </com.google.android.material.appbar.MaterialToolbar>
 
-    <TextView
+    <ScrollView
+        android:id="@+id/form_body"
+        android:fillViewport="true"
         android:layout_width="match_parent"
-        android:layout_height="32dp"
-        android:layout_marginHorizontal="10sp"
-        android:text="@string/duty_field_label"
-        android:textSize="26sp"/>
+        android:layout_height="0sp"
+        android:layout_weight="9">
 
-    <EditText
-        android:id="@+id/duty_form_field"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginHorizontal="10sp"
-        android:hint="@string/duty_field_label"
-        android:autofillHints="Nome do Serviço"
-        android:textColor="#353535"
-        android:inputType="text"
-        android:clickable="false"
-        android:cursorVisible="false"
-        android:focusable="false"
-        android:focusableInTouchMode="false"
-        android:textSize="32sp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="32dp"
-        android:layout_marginHorizontal="10sp"
-        android:layout_marginTop="15sp"
-        android:text="@string/address_field_label"
-        android:textSize="26sp"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <EditText
-            android:id="@+id/zip_code_form_field"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="60dp"
-            android:layout_marginHorizontal="10sp"
-            android:hint="@string/zip_code_field_label"
-            android:autofillHints="CEP"
-            android:textColor="#353535"
-            android:inputType="number"
-            android:textSize="32sp"/>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/district_dropdown_list"
-            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
-            android:layout_height="60dp"
-            android:layout_width="0dp"
-            android:layout_marginEnd="13sp"
-            android:layout_weight="2">
-
-            <AutoCompleteTextView
-                android:id="@+id/district_list_container"
+            <TextView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="none"
-                android:text="@string/district_field_label"
-                android:backgroundTint="@color/white"
-                android:textSize="25sp" />
+                android:layout_height="32dp"
+                android:layout_marginHorizontal="10sp"
+                android:text="@string/duty_field_label"
+                android:textSize="26sp"/>
 
-        </com.google.android.material.textfield.TextInputLayout>
+            <EditText
+                android:id="@+id/duty_form_field"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginHorizontal="10sp"
+                android:hint="@string/duty_field_label"
+                android:autofillHints="Nome do Serviço"
+                android:textColor="#353535"
+                android:inputType="text"
+                android:clickable="false"
+                android:cursorVisible="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:textSize="32sp"/>
 
-    </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:layout_marginHorizontal="10sp"
+                android:layout_marginTop="15sp"
+                android:text="@string/address_field_label"
+                android:textSize="26sp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:id="@+id/zip_code_form_field"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="60dp"
+                    android:layout_marginHorizontal="10sp"
+                    android:hint="@string/zip_code_field_label"
+                    android:autofillHints="CEP"
+                    android:textColor="#353535"
+                    android:inputType="number"
+                    android:textSize="32sp"/>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/district_dropdown_list"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
+                    android:layout_height="60dp"
+                    android:layout_width="0dp"
+                    android:layout_marginEnd="13sp"
+                    android:layout_weight="2">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/district_list_container"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="none"
+                        android:text="@string/district_field_label"
+                        android:textSize="25sp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:id="@+id/pub_place_form_field"
+                    android:layout_width="0dp"
+                    android:layout_weight="3"
+                    android:layout_height="60dp"
+                    android:layout_marginHorizontal="10sp"
+                    android:hint="@string/pub_place_field_label"
+                    android:autofillHints="Logradouro"
+                    android:textColor="#353535"
+                    android:inputType="text"
+                    android:textSize="32sp"/>
+                <EditText
+                    android:id="@+id/address_num_form_field"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="60dp"
+                    android:layout_marginHorizontal="10sp"
+                    android:hint="@string/number_field_label"
+                    android:autofillHints="Número"
+                    android:textColor="#353535"
+                    android:inputType="text"
+                    android:textSize="32sp"/>
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/address_ref_form_field"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginHorizontal="10sp"
+                android:hint="@string/ref_field_label"
+                android:autofillHints="Referência"
+                android:textColor="#353535"
+                android:inputType="text"
+                android:textSize="32sp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:layout_marginHorizontal="10sp"
+                android:layout_marginTop="15sp"
+                android:text="@string/description_field_label"
+                android:textSize="26sp"/>
+
+            <EditText
+                android:id="@+id/description_form_field"
+                android:layout_width="match_parent"
+                android:layout_weight="8"
+                android:layout_height="0dp"
+                android:lines="4"
+                android:layout_marginHorizontal="10sp"
+                android:hint="@string/description_field_hint"
+                android:autofillHints="Descrição"
+                android:textColor="#353535"
+                android:inputType="textMultiLine"
+                android:textSize="32sp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:layout_marginHorizontal="10sp"
+                android:layout_marginTop="15sp"
+                android:text="@string/image_label"
+                android:textSize="26sp"/>
+
+            <ImageView
+                android:id="@+id/image_view"
+                android:layout_width="match_parent"
+                android:layout_height="200sp"
+                android:visibility="gone"
+                android:contentDescription="@string/image_label"/>
+
+            <Button
+                android:id="@+id/add_image_btn"
+                android:layout_width="match_parent"
+                android:layout_height="32sp"
+                android:layout_marginVertical="10sp"
+                android:layout_marginHorizontal="15sp"
+                android:textSize="25sp"
+                android:backgroundTint="#117711"
+                android:text="@string/add_image_btn"
+                android:layout_weight="1"/>
+
+            <Button
+                android:id="@+id/remove_image_btn"
+                android:layout_width="match_parent"
+                android:layout_height="32sp"
+                android:layout_marginVertical="10sp"
+                android:layout_marginHorizontal="15sp"
+                android:textSize="25sp"
+                android:visibility="gone"
+                android:backgroundTint="#BE0000"
+                android:text="@string/remove_image_btn"
+                android:layout_weight="1"/>
+
+        </LinearLayout>
+
+    </ScrollView>
 
     <LinearLayout
+        android:id="@+id/form_footer"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <EditText
-            android:id="@+id/pub_place_form_field"
-            android:layout_width="0dp"
-            android:layout_weight="3"
-            android:layout_height="60dp"
-            android:layout_marginHorizontal="10sp"
-            android:hint="@string/pub_place_field_label"
-            android:autofillHints="Logradouro"
-            android:textColor="#353535"
-            android:inputType="text"
-            android:textSize="32sp"/>
-        <EditText
-            android:id="@+id/address_num_form_field"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="60dp"
-            android:layout_marginHorizontal="10sp"
-            android:hint="@string/number_field_label"
-            android:autofillHints="Número"
-            android:textColor="#353535"
-            android:inputType="text"
-            android:textSize="32sp"/>
-    </LinearLayout>
+        android:layout_height="0sp"
+        android:layout_weight="1">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-        <EditText
-            android:id="@+id/address_ref_form_field"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginHorizontal="10sp"
-            android:hint="@string/ref_field_label"
-            android:autofillHints="Referência"
-            android:textColor="#353535"
-            android:inputType="text"
-            android:textSize="32sp"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="32dp"
-            android:layout_marginHorizontal="10sp"
-            android:layout_marginTop="15sp"
-            android:text="@string/description_field_label"
-            android:textSize="26sp"/>
-        <EditText
-            android:id="@+id/description_form_field"
-            android:layout_width="match_parent"
-            android:layout_weight="6"
-            android:layout_height="0dp"
-            android:layout_marginHorizontal="10sp"
-            android:hint="@string/description_field_hint"
-            android:autofillHints="Descrição"
-            android:textColor="#353535"
-            android:inputType="textMultiLine"
-            android:textSize="32sp"/>
         <Button
-            android:id="@+id/add_images_btn"
-            android:layout_width="match_parent"
-            android:layout_height="28sp"
-            android:layout_marginVertical="10sp"
+            android:id="@+id/send_form_btn"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginVertical="5sp"
             android:layout_marginHorizontal="15sp"
             android:textSize="25sp"
-            android:text="@string/add_image_btn"
+            android:enabled="false"
+            android:backgroundTint="#2A68AA"
+            android:text="@string/send_form_btn"
             android:layout_weight="1"/>
+
     </LinearLayout>
 
 </androidx.appcompat.widget.LinearLayoutCompat>

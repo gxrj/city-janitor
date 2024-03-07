@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
-    <color name="custom_alpha">#99acacac</color>
+    <color name="black">#FFFFFFFF</color>
+    <color name="white">#FF000000</color>
+    <color name="warning">#99BE0000</color>
+    <color name="badge_background">#99424242</color>
+    <color name="badge_border">#ccc</color>
+    <color name="toolbar">#6C6C6C</color>
+    <color name="list_divider">#6C6C6C</color>
+    <color name="list_item_text">#4C4C4C</color>
 </resources>

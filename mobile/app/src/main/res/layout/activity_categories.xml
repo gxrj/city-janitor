@@ -11,7 +11,7 @@
         android:id="@+id/materialToolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#6C6C6C"
+        android:background="@color/toolbar"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         app:titleCentered="true">
@@ -25,7 +25,7 @@
                 android:id="@+id/back_btn"
                 android:layout_width="60dp"
                 android:layout_height="match_parent"
-                android:backgroundTint="#6C6C6C"
+                android:backgroundTint="@color/toolbar"
                 android:contentDescription="@string/back"
                 app:iconSize="30sp"
                 app:iconTint="@color/white"
@@ -45,7 +45,7 @@
 
     <ListView
         android:id="@+id/categories"
-        android:divider="#FF000000"
+        android:divider="@color/list_divider"
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
     </ListView>
