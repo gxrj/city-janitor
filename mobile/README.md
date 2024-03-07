@@ -10,3 +10,7 @@
 
 - [Android SDK](https://developer.android.com/studio)
 - [Volley](https://google.github.io/volley/) Http Client
+
+## Current state
+
+![](../assets/janitory-mobile.gif)
