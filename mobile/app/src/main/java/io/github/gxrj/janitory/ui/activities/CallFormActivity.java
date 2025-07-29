@@ -37,7 +37,7 @@ public class CallFormActivity extends AppCompatActivity {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_call_form );
         render();
-        registerPhotoPickerActivity(); // In case of errors try put above super.onCreate() instruction
+        registerPhotoPickerActivity(); // In case of errors try putting above super.onCreate() instruction
         setListeners();
     }
 
@@ -51,9 +51,10 @@ public class CallFormActivity extends AppCompatActivity {
 
     private void invokeFileChooser( Uri uri ) {
 
-        try {
-            if( uri == null ) return;
+        if( uri == null ) return;
 
+        try {
+            
             InputStream is = getContentResolver()
                     .openInputStream( uri );
 
