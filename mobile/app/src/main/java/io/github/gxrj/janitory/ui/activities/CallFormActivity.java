@@ -26,7 +26,7 @@ import io.github.gxrj.janitory.domain.models.District;
 
 public class CallFormActivity extends AppCompatActivity {
 
-    Button addImageBtn, removeImageBtn;
+    Button addImageBtn, removeImageBtn, sendFormBtn;
     ImageView imageView;
 
     ActivityResultLauncher<String> photoPickerActivity;
@@ -72,7 +72,7 @@ public class CallFormActivity extends AppCompatActivity {
         String plainDuty = getData().getString( "duty" );
         String plainDistricts = getData().getString( "districts" );
 
-        TextView dutyFormField = findViewById( R.id.duty_form_field );
+        EditText dutyFormField = findViewById( R.id.duty_form_field );
 
         try{
             JSONObject json = new JSONObject( plainDuty );
@@ -94,8 +94,8 @@ public class CallFormActivity extends AppCompatActivity {
 
         AutoCompleteTextView districtDropdownList = findViewById( R.id.districts );
         ArrayAdapter<District> adapter =
-                new ArrayAdapter<>( this, R.layout.item_districts, districts );
-        districtDropdownList.setAdapter( adapter );
+                new ArrayAdapter<>( this, R.layout.item_districts, districts ); // Todo change to popup menu
+        districtDropdownList.setAdapter( adapter ); // Todo change to popup menu
 
         addImageBtn = findViewById( R.id.add_image_btn );
         addImageBtn.setOnClickListener( view -> photoPickerActivity.launch( "image/*" ) );
