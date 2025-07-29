@@ -6,11 +6,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
+import android.widget.*;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts.GetContent;
@@ -56,6 +52,8 @@ public class CallFormActivity extends AppCompatActivity {
     private void invokeFileChooser( Uri uri ) {
 
         try {
+            if( uri == null ) return;
+
             InputStream is = getContentResolver()
                     .openInputStream( uri );
 
@@ -73,12 +71,12 @@ public class CallFormActivity extends AppCompatActivity {
         String plainDuty = getData().getString( "duty" );
         String plainDistricts = getData().getString( "districts" );
 
-        EditText dutyFormField = findViewById( R.id.duty_form_field );
+        TextView dutyFormField = findViewById( R.id.duty_form_field );
 
         try{
             JSONObject json = new JSONObject( plainDuty );
             districts = District.fromJsonArray( new JSONArray( plainDistricts ) );
-            dutyFormField.setHint( json.getString( "name" ) );
+            dutyFormField.setText( json.getString( "name" ) );
         }
         catch( JSONException e ) {
             Log.e( "error", "JSONException at CallFormActivity render" );
@@ -93,7 +91,7 @@ public class CallFormActivity extends AppCompatActivity {
         Button backBtn = findViewById( R.id.back_btn );
         backBtn.setOnClickListener( view -> finish() );
 
-        AutoCompleteTextView districtDropdownList = findViewById( R.id.district_list_container );
+        AutoCompleteTextView districtDropdownList = findViewById( R.id.districts );
         ArrayAdapter<District> adapter =
                 new ArrayAdapter<>( this, R.layout.item_districts, districts );
         districtDropdownList.setAdapter( adapter );
@@ -117,7 +115,6 @@ public class CallFormActivity extends AppCompatActivity {
     }
 
     private void removeImage() {
-        //Todo: Remove Image
         setImageContent( null );
         addImageBtn.setVisibility( View.VISIBLE );
         removeImageBtn.setVisibility( View.GONE );
