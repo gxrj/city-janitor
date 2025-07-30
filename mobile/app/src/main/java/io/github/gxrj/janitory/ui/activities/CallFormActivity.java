@@ -104,6 +104,9 @@ public class CallFormActivity extends AppCompatActivity {
         removeImageBtn.setOnClickListener( view -> removeImage() );
 
         imageView = findViewById( R.id.image_view );
+
+        sendFormBtn = findViewById( R.id.send_form_btn );
+        sendFormBtn.setOnClickListener( view -> sendForm() );
     }
 
     private void setImageContent( InputStream is ) {
@@ -119,5 +122,9 @@ public class CallFormActivity extends AppCompatActivity {
         setImageContent( null );
         addImageBtn.setVisibility( View.VISIBLE );
         removeImageBtn.setVisibility( View.GONE );
+    }
+
+    private void sendForm() {
+        //Todo: decide whether use model classes as proxy for json
     }
 }
