@@ -11,7 +11,7 @@ import java.util.List;
 
 public class District {
 
-    private Long id;
+    private final Long id;
 
     private final String name;
 

@@ -126,5 +126,6 @@ public class CallFormActivity extends AppCompatActivity {
 
     private void sendForm() {
         //Todo: decide whether use model classes as proxy for json
+        //Todo: start automated tests and ui tests
     }
 }

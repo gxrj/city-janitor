@@ -9,7 +9,7 @@
 ## Tools
 
 - [Android SDK](https://developer.android.com/studio)
-- [Material Design v.2](https://m2.material.io/components)
+- [Material Design v.2](https://m2.material.io/components) (not used to v.3 yet)
 - [Volley](https://google.github.io/volley/) Http Client
 
 ## Current state

@@ -68,13 +68,7 @@ public class CategoriesActivity extends AppCompatActivity {
         Category category = ( Category ) parent.getItemAtPosition( position );
         Intent dutiesActivity = new Intent( this, DutiesActivity.class );
 
-        try {
-            String categoryJson = Category.toJsonObject( category ).toString();
-            dutiesActivity.putExtra( "category", categoryJson );
-            startActivity( dutiesActivity );
-        }
-        catch( JSONException e ) {
-            Log.e( "error", "JSONException at Duties list conversion to JsonArray" );
-        }
+        dutiesActivity.putExtra( "category", Category.toPlainJson( category ) );
+        startActivity( dutiesActivity );
     }
 }

@@ -38,7 +38,7 @@ public class Duty {
 
     public static String fromListToString( List<Duty> list ) {
         BinaryOperator<String> accumulator = ( partialString, el ) ->
-                partialString.equals( "" ) ?
+                partialString.isEmpty() ?
                         el : partialString + "," + el;
         String plainJson = list.stream()
                 .map( el -> "{\"id\":"+el.id+",\"name\":\""+el.name+"\"}" )

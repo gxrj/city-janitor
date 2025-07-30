@@ -35,12 +35,11 @@ public class Category {
         return c;
     }
 
-    public static JSONObject toJsonObject( Category c ) throws JSONException {
-        String plainJson = "{ \"id\":" + c.getId() +
-                            ",\"name\":\"" + c +
-                            "\",\"duties\":" + Duty.fromListToString( c.getDuties() ) + "}";
+    public static String toPlainJson( Category c ) {
+        return "{ \"id\":" + c.getId() +
+                ",\"name\":\"" + c +
+                "\",\"duties\":" + Duty.fromListToString( c.getDuties() ) + "}";
 
-        return new JSONObject( plainJson );
     }
 
     public static Category fromJsonString( String plainJson ) throws JSONException {
