@@ -68,7 +68,7 @@ public class CategoriesActivity extends AppCompatActivity {
         Category category = ( Category ) parent.getItemAtPosition( position );
         Intent dutiesActivity = new Intent( this, DutiesActivity.class );
 
-        dutiesActivity.putExtra( "category", Category.toPlainJson( category ) );
+        dutiesActivity.putExtra( "category", category.toPlainJson() );
         startActivity( dutiesActivity );
     }
 }

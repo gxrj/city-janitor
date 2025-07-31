@@ -26,19 +26,60 @@ import io.github.gxrj.janitory.domain.models.District;
 
 public class CallFormActivity extends AppCompatActivity {
 
-    Button addImageBtn, removeImageBtn, sendFormBtn;
+    private static List<District> districts = new ArrayList<>();
+    Button backBtn, addImageBtn, removeImageBtn, sendFormBtn;
+    AutoCompleteTextView districtDropdownList;
     ImageView imageView;
-
     ActivityResultLauncher<String> photoPickerActivity;
 
-    private static List<District> districts = new ArrayList<>();
     @Override
     protected void onCreate( Bundle savedInstanceState ) {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_call_form );
-        render();
         registerPhotoPickerActivity(); // In case of errors try putting above super.onCreate() instruction
+        bindComponents();
         setListeners();
+    }
+
+    private void bindComponents() {
+        backBtn = findViewById( R.id.back_btn );
+        districtDropdownList = findViewById( R.id.districts );
+        imageView = findViewById( R.id.image_view );
+        addImageBtn = findViewById( R.id.add_image_btn );
+        removeImageBtn = findViewById( R.id.remove_image_btn );
+        sendFormBtn = findViewById( R.id.send_form_btn );
+        bindDistrictList();
+    }
+
+    private void bindDistrictList() {
+        String plainDuty = getData().getString( "duty" );
+        String plainDistricts = getData().getString( "districts" );
+
+        EditText dutyFormField = findViewById( R.id.duty_form_field );
+
+        try{
+            JSONObject json = new JSONObject( plainDuty );
+            districts = District.fromJsonArray( new JSONArray( plainDistricts ) );
+            dutyFormField.setText( json.getString( "name" ) );
+        }
+        catch( JSONException e ) {
+            Log.e( "error", "JSONException at CallFormActivity render" );
+        }
+    }
+
+    private void setListeners() {
+
+        backBtn.setOnClickListener( view -> finish() );
+
+        ArrayAdapter<District> adapter =
+                new ArrayAdapter<>( this, R.layout.item_districts, districts ); // Todo change to popup menu
+        districtDropdownList.setAdapter( adapter ); // Todo change to popup menu
+
+        addImageBtn.setOnClickListener( view -> photoPickerActivity.launch( "image/*" ) );
+
+        removeImageBtn.setOnClickListener( view -> removeImage() );
+
+        sendFormBtn.setOnClickListener( view -> sendForm() );
     }
 
     /**
@@ -68,45 +109,8 @@ public class CallFormActivity extends AppCompatActivity {
         removeImageBtn.setVisibility( View.VISIBLE );
     }
 
-    private void render() {
-        String plainDuty = getData().getString( "duty" );
-        String plainDistricts = getData().getString( "districts" );
-
-        EditText dutyFormField = findViewById( R.id.duty_form_field );
-
-        try{
-            JSONObject json = new JSONObject( plainDuty );
-            districts = District.fromJsonArray( new JSONArray( plainDistricts ) );
-            dutyFormField.setText( json.getString( "name" ) );
-        }
-        catch( JSONException e ) {
-            Log.e( "error", "JSONException at CallFormActivity render" );
-        }
-    }
-
     private Bundle getData() {
         return getIntent().getExtras();
-    }
-
-    private void setListeners() {
-        Button backBtn = findViewById( R.id.back_btn );
-        backBtn.setOnClickListener( view -> finish() );
-
-        AutoCompleteTextView districtDropdownList = findViewById( R.id.districts );
-        ArrayAdapter<District> adapter =
-                new ArrayAdapter<>( this, R.layout.item_districts, districts ); // Todo change to popup menu
-        districtDropdownList.setAdapter( adapter ); // Todo change to popup menu
-
-        addImageBtn = findViewById( R.id.add_image_btn );
-        addImageBtn.setOnClickListener( view -> photoPickerActivity.launch( "image/*" ) );
-
-        removeImageBtn = findViewById( R.id.remove_image_btn );
-        removeImageBtn.setOnClickListener( view -> removeImage() );
-
-        imageView = findViewById( R.id.image_view );
-
-        sendFormBtn = findViewById( R.id.send_form_btn );
-        sendFormBtn.setOnClickListener( view -> sendForm() );
     }
 
     private void setImageContent( InputStream is ) {
@@ -125,7 +129,7 @@ public class CallFormActivity extends AppCompatActivity {
     }
 
     private void sendForm() {
-        //Todo: decide whether use model classes as proxy for json
+        String requestBody;
         //Todo: start automated tests and ui tests
     }
 }

@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Category {
-    private Long id;
+
     private String name;
 
     private List<Duty> duties;
@@ -29,17 +29,9 @@ public class Category {
 
     public static Category fromJsonObject( JSONObject json ) throws JSONException {
         Category c = new Category();
-        c.setId( json.getLong( "id" ) );
-        c.setName( json.getString( "name" ) );
-        c.setDuties( Duty.fromJsonArray( json.getJSONArray( "duties" ) ) );
+        c.name = json.getString( "name" );
+        c.duties = Duty.fromJsonArray( json.getJSONArray( "duties" ) );
         return c;
-    }
-
-    public static String toPlainJson( Category c ) {
-        return "{ \"id\":" + c.getId() +
-                ",\"name\":\"" + c +
-                "\",\"duties\":" + Duty.fromListToString( c.getDuties() ) + "}";
-
     }
 
     public static Category fromJsonString( String plainJson ) throws JSONException {
@@ -47,24 +39,14 @@ public class Category {
         return Category.fromJsonObject( json );
     }
 
-    public Long getId() {
-        return id;
+    public String toPlainJson() {
+        return "{ \"name\":\"" + name +
+                "\",\"duties\":" + Duty.fromListToString( duties ) + "}";
+
     }
 
     public List<Duty> getDuties() {
         return duties;
-    }
-
-    public void setId( Long id ) {
-        this.id = id;
-    }
-
-    public void setName( String name ) {
-        this.name = name;
-    }
-
-    public void setDuties( List<Duty> duties ) {
-        this.duties = duties;
     }
 
     @NonNull

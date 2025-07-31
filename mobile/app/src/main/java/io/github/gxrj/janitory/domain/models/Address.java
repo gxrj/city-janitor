@@ -11,36 +11,24 @@ public class Address {
     private District district;
 
     public static Address fromJsonObject( JSONObject json ) throws JSONException {
-        Address address = new Address();
+        Address a = new Address();
 
-        address.setZipCode( json.getString( "zip_code" ) );
-        address.setPubPlace( json.getString( "pub_place" ) );
-        address.setReference( json.getString( "reference" ) );
+        a.zipCode = json.getString( "zip_code" );
+        a.pubPlace = json.getString( "pub_place" );
+        a.reference = json.getString( "reference" );
         JSONObject districtJson = json.getJSONObject( "district" );
 
-        address.setDistrict(
-                districtJson.getString("name"), districtJson.getLong("id") );
+        a.district = new District( districtJson.getString("name") );
 
-        return address;
+        return a;
     }
 
-    public static String toPlanJson( Address address ) {
+    public String toPlanJson() {
         return "{" +
-                "\"zip_code\":"+ address.getZipCode() +","+
-                "\"pub_place\":"+ address.getPubPlace() +","+
-                "\"reference\":"+ address.getReference() +","+
-                "\"district\":"+ address.getDistrict().toPlainJson()+
+                "\"zip_code\":\""+ zipCode +"\","+
+                "\"pub_place\":\""+ pubPlace +"\","+
+                "\"reference\":\""+ reference +"\","+
+                "\"district\":\""+ district +"\""+
                 "}";
     }
-
-    public String getZipCode() { return zipCode; }
-    public String getPubPlace() { return pubPlace; }
-    public String getReference() { return reference; }
-    public District getDistrict() { return district; }
-
-    public void setZipCode( String zipCode ) { this.zipCode = zipCode; }
-    public void setPubPlace( String pubPlace ) { this.pubPlace = pubPlace; }
-    public void setReference( String reference ) { this.reference = reference; }
-    public void setDistrict( String name, Long id ) { this.district = new District( id, name ); }
-
 }

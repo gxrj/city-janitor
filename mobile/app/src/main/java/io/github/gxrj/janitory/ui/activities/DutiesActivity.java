@@ -96,7 +96,7 @@ public class DutiesActivity  extends AppCompatActivity {
 
         String json = "[";
         for( int i = 0; i < districts.length; i++ ) {
-            json += "{ \"id\":" + i + ", \"name\": \"" + districts[i] + "\" }";
+            json += "{ \"name\": \"" + districts[i] + "\" }";
             json += i == districts.length - 1 ? "" : ",";
         }
 

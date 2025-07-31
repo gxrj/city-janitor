@@ -11,12 +11,9 @@ import java.util.List;
 
 public class District {
 
-    private final Long id;
-
     private final String name;
 
-    public District( Long id, String name ) {
-        this.id = id;
+    public District( String name ) {
         this.name = name;
     }
 
@@ -24,20 +21,12 @@ public class District {
        List<District> list = new ArrayList<>();
        for( int i = 0; i < districts.length(); i++ ) {
            JSONObject obj = districts.getJSONObject( i );
-           District d = new District(
-                   obj.getLong( "id" ),
-                   obj.getString( "name" ) );
+           District d = new District( obj.getString( "name" ) );
 
            list.add( d );
        }
        return list;
     }
-
-    public String toPlainJson() {
-        return "{ \"id\": " + id + ", \"name\": \"" + name +"\" }";
-    }
-
-    public Long getId() { return id; }
 
     @NonNull
     public String toString() {

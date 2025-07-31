@@ -12,11 +12,9 @@ import java.util.function.BinaryOperator;
 
 public class Duty {
 
-    private final Long id;
     private final String name;
 
-    public Duty( Long id, String name ) {
-        this.id = id;
+    public Duty( String name ) {
         this.name = name;
     }
 
@@ -33,7 +31,7 @@ public class Duty {
     }
 
     public static Duty fromJsonObject( JSONObject json ) throws JSONException {
-        return new Duty( json.getLong( "id" ), json.getString( "name" ) );
+        return new Duty( json.getString( "name" ) );
     }
 
     public static String fromListToString( List<Duty> list ) {
@@ -41,18 +39,14 @@ public class Duty {
                 partialString.isEmpty() ?
                         el : partialString + "," + el;
         String plainJson = list.stream()
-                .map( el -> "{\"id\":"+el.id+",\"name\":\""+el.name+"\"}" )
+                .map( el -> "{\"name\":\""+el.name+"\"}" )
                 .reduce( "", accumulator );
 
         return "["+ plainJson + "]";
     }
 
     public static String toPlainJson( Duty d, Category c ) {
-        return "{\"id\":"+d.id+",\"name\":\""+d.name+"\",\"category\":\""+c+"\"}";
-    }
-
-    public Long getId() {
-        return id;
+        return "{\"name\":\""+d.name+"\",\"category\":\""+c+"\"}";
     }
 
     @NonNull
