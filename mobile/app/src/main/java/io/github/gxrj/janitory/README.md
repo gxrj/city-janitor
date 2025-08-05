@@ -4,4 +4,4 @@ Following [this article](https://developer.android.com/topic/architecture#recomm
 - ui ( presentation layer )
 - data ( data sources layer )
 - domain ( business logic layer )
-- utils ( utilities e.g. image conversion )
+- utils ( utilities e.g. image parsers, etcetera )
