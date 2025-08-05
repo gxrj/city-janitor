@@ -1,6 +1,7 @@
 package io.github.gxrj.janitory.domain.models;
 
 import android.graphics.Bitmap;
+import io.github.gxrj.janitory.utils.ImageParser;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -22,6 +23,7 @@ public class Call {
                  .duty( Duty.fromJsonObject(  json.getJSONObject( "duty" ) ) )
                  .description( json.getString( "description" ) )
                  .protocol( json.getString( "protocol" ) )
+                 .image( ImageParser.toBitmap( json.getString( "image" ) ) )
                  .build();
      }
 
