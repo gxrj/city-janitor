@@ -106,10 +106,11 @@ public class DutiesActivity  extends AppCompatActivity {
     }
 
     private void fetchDistricts() {
-        WebClient.fetchData(
-                this,
+        WebClient.callApi(
+                "get",
                 "TODO: put districts endpoint here",
                 null,
+                this,
                 json -> fillDistricts( json.toString() ),
                 error -> Log.e( "error", error.toString() ) );
     }

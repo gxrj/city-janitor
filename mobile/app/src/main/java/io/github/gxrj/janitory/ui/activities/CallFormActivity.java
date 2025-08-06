@@ -2,6 +2,7 @@ package io.github.gxrj.janitory.ui.activities;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,6 +13,11 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts.GetContent;
 import androidx.appcompat.app.AppCompatActivity;
 
+import io.github.gxrj.janitory.domain.builders.AddressBuilder;
+import io.github.gxrj.janitory.domain.builders.CallBuilder;
+import io.github.gxrj.janitory.domain.models.Address;
+import io.github.gxrj.janitory.domain.models.Call;
+import io.github.gxrj.janitory.domain.models.Citizen;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -67,6 +73,10 @@ public class CallFormActivity extends AppCompatActivity {
         }
     }
 
+    private Bundle getData() {
+        return getIntent().getExtras();
+    }
+
     private void setListeners() {
 
         backBtn.setOnClickListener( view -> finish() );
@@ -109,10 +119,6 @@ public class CallFormActivity extends AppCompatActivity {
         removeImageBtn.setVisibility( View.VISIBLE );
     }
 
-    private Bundle getData() {
-        return getIntent().getExtras();
-    }
-
     private void setImageContent( InputStream is ) {
 
         Bitmap decodedFile = BitmapFactory.decodeStream( is );
@@ -129,7 +135,49 @@ public class CallFormActivity extends AppCompatActivity {
     }
 
     private void sendForm() {
-        String requestBody;
+        String requestBody = buildCall().toPlainJson();
+        //Todo: add events to enable sendFormBtn
         //Todo: start automated tests and ui tests
+    }
+
+    private Call buildCall() {
+        EditText duty = findViewById( R.id.duty_form_field );
+        EditText description = findViewById( R.id.description_form_field );
+        BitmapDrawable drawable = (BitmapDrawable) imageView.getDrawable();
+        Citizen author = buildAuthor();
+
+        CallBuilder builder = new CallBuilder()
+                .address( buildAddress() )
+                .duty( duty.getText().toString() )
+                .description( description.getText().toString() );
+
+        if( drawable != null )
+            builder.image( drawable.getBitmap() );
+
+        if( author != null )
+            builder.author( author );
+
+        return builder.build();
+    }
+
+    private Address buildAddress() {
+        EditText zipCode = findViewById( R.id.zip_code_form_field );
+        AutoCompleteTextView districts = findViewById( R.id.districts );
+        EditText pubPlace = findViewById( R.id.pub_place_form_field );
+        EditText addressNumber = findViewById( R.id.address_num_form_field );
+        EditText addressRef = findViewById( R.id.address_ref_form_field );
+
+        return new AddressBuilder()
+                .zipCode( zipCode.getText().toString() )
+                .district( districts.getText().toString() )
+                .pubPlace( pubPlace.getText().toString() )
+                .number( addressNumber.getText().toString() )
+                .reference( addressRef.getText().toString() )
+                .build();
+    }
+
+    private Citizen buildAuthor() {
+        //Todo: check whether the author is anonymous or not, if not build author
+        return null;
     }
 }

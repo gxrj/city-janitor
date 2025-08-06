@@ -13,13 +13,27 @@ import com.android.volley.toolbox.Volley;
 
 import org.json.JSONObject;
 
+import java.util.Locale;
+
 public class WebClient {
 
-    public static void fetchData(
-            Context context, String url, JSONObject data,
+    /**
+     * Performs an http call to the server
+     * @param httpMethod GET | POST
+     * @param url refers to the server endpoint
+     * @param data refers to the request body
+     * @param context refers to the callers context
+     * @param onSuccess define what actions must be performed on success
+     * @param onError define what actions must be performed on error
+     */
+    public static void callApi(
+            String httpMethod, String url,
+            JSONObject data, Context context,
             Listener<JSONObject> onSuccess, ErrorListener onError ) {
 
-        JsonObjectRequest request = buildRequest( Method.GET, url, data, onSuccess, onError );
+        int method = checkHttpMethod( httpMethod );
+
+        JsonObjectRequest request = buildRequest( method, url, data, onSuccess, onError );
         RequestQueue queue = Volley.newRequestQueue( context );
         queue.add( request );
     }
@@ -30,4 +44,10 @@ public class WebClient {
 
         return new JsonObjectRequest( method, url, data, onSuccess, onError );
     }
+
+    private static int checkHttpMethod( String httpMethod ) {
+        httpMethod = httpMethod.toLowerCase();
+        return httpMethod.equals( "post" ) ? Method.POST : Method.GET;
+    }
+
 }

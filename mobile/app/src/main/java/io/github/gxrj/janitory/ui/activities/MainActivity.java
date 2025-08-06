@@ -71,12 +71,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void fetchCategories() {
-        WebClient.fetchData(
-                            this,
-                            "TODO: put categories endpoint here",
-                            null,
-                            json -> proceedToCategoriesActivity( json.toString() ),
-                            error -> Log.e( "error", error.toString() ) );
+        WebClient.callApi(
+                "get",
+                "TODO: put categories endpoint here",
+                null,
+                this,
+                json -> proceedToCategoriesActivity( json.toString() ),
+                error -> Log.e( "error", error.toString() ) );
     }
 
     private void proceedToCategoriesActivity( String json ) {
