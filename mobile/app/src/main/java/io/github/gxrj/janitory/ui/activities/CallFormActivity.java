@@ -1,5 +1,7 @@
 package io.github.gxrj.janitory.ui.activities;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
@@ -20,7 +22,6 @@ import io.github.gxrj.janitory.domain.models.Call;
 import io.github.gxrj.janitory.domain.models.Citizen;
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.FileNotFoundException;
 import java.io.InputStream;
@@ -34,7 +35,8 @@ public class CallFormActivity extends AppCompatActivity {
 
     private static List<District> districts = new ArrayList<>();
     Button backBtn, addImageBtn, removeImageBtn, sendFormBtn;
-    AutoCompleteTextView districtDropdownList;
+    TextView districtDropdownList;
+    AlertDialog districtsDialog;
     ImageView imageView;
     ActivityResultLauncher<String> photoPickerActivity;
 
@@ -48,6 +50,9 @@ public class CallFormActivity extends AppCompatActivity {
     }
 
     private void bindComponents() {
+        EditText dutyFormField = findViewById( R.id.duty_form_field );
+        dutyFormField.setText( getData().getString( "duty" ) );
+
         backBtn = findViewById( R.id.back_btn );
         districtDropdownList = findViewById( R.id.districts );
         imageView = findViewById( R.id.image_view );
@@ -58,19 +63,27 @@ public class CallFormActivity extends AppCompatActivity {
     }
 
     private void bindDistrictList() {
-        String plainDuty = getData().getString( "duty" );
         String plainDistricts = getData().getString( "districts" );
 
-        EditText dutyFormField = findViewById( R.id.duty_form_field );
-
         try{
-            JSONObject json = new JSONObject( plainDuty );
             districts = District.fromJsonArray( new JSONArray( plainDistricts ) );
-            dutyFormField.setText( json.getString( "name" ) );
         }
         catch( JSONException e ) {
             Log.e( "error", "JSONException at CallFormActivity render" );
+            return;
         }
+
+        ArrayAdapter<District> adapter =
+                new ArrayAdapter<>( this, R.layout.item_districts, districts );
+
+        AlertDialog.Builder builder = new AlertDialog.Builder( this );
+
+        builder.setTitle( "Selecione o bairro" );
+        builder.setSingleChoiceItems( adapter, 0, districtDialogListener() );
+        builder.setPositiveButton( "Confirmar", districtDialogListener() );
+        builder.setNeutralButton( "Cancelar", districtDialogListener() );
+
+        districtsDialog = builder.create();
     }
 
     private Bundle getData() {
@@ -81,15 +94,29 @@ public class CallFormActivity extends AppCompatActivity {
 
         backBtn.setOnClickListener( view -> finish() );
 
-        ArrayAdapter<District> adapter =
-                new ArrayAdapter<>( this, R.layout.item_districts, districts ); // Todo change to popup menu
-        districtDropdownList.setAdapter( adapter ); // Todo change to popup menu
-
         addImageBtn.setOnClickListener( view -> photoPickerActivity.launch( "image/*" ) );
 
         removeImageBtn.setOnClickListener( view -> removeImage() );
 
         sendFormBtn.setOnClickListener( view -> sendForm() );
+
+        districtDropdownList.setOnClickListener( view -> districtsDialog.show() );
+    }
+
+    private DialogInterface.OnClickListener districtDialogListener() {
+        return ( dialog, index ) -> {
+            String item = districtDropdownList.getText().toString();
+
+            if( item.equals( "Bairro" ) ) index = 0;
+
+            if( index < 0 ) {
+                dialog.dismiss();
+                return;
+            }
+
+            districtDropdownList.setText( districts.get( index ).toString() );
+            dialog.dismiss();
+        };
     }
 
     /**
@@ -162,7 +189,7 @@ public class CallFormActivity extends AppCompatActivity {
 
     private Address buildAddress() {
         EditText zipCode = findViewById( R.id.zip_code_form_field );
-        AutoCompleteTextView districts = findViewById( R.id.districts );
+        TextView districts = findViewById( R.id.districts );
         EditText pubPlace = findViewById( R.id.pub_place_form_field );
         EditText addressNumber = findViewById( R.id.address_num_form_field );
         EditText addressRef = findViewById( R.id.address_ref_form_field );

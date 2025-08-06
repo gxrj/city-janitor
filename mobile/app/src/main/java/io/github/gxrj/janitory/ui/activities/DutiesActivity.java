@@ -73,7 +73,7 @@ public class DutiesActivity  extends AppCompatActivity {
         Duty duty = ( Duty ) parent.getItemAtPosition( position );
         Intent callFormActivity = new Intent( this, CallFormActivity.class );
 
-        callFormActivity.putExtra( "duty", Duty.toPlainJson( duty, selectedCategory ) );
+        callFormActivity.putExtra( "duty", duty.toString() );
         callFormActivity.putExtra( "districts", plainJsonDistricts );
         startActivity( callFormActivity );
     }

@@ -3,8 +3,8 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
        android:shape="rectangle">
 
-    <corners android:radius="10dp" />
+    <corners android:radius="5dp" />
 
     <!-- This is the border thickness -->
-    <stroke android:width="2dp" android:color="?attr/actionMenuTextColor"/>
+    <stroke android:width="0.5dp" android:color="?attr/actionMenuTextColor"/>
 </shape>
