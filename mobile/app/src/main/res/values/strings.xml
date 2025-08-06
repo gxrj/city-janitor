@@ -16,7 +16,7 @@
     <string name="number_field_label">Número</string>
     <string name="ref_field_label">Referência</string>
     <string name="description_field_label">Descrição</string>
-    <string name="description_field_hint">Informe os detalhes aqui</string>
+    <string name="description_field_hint">Descreva os detalhes da ocorrência aqui</string>
     <string name="image_label">Imagem</string>
     <string name="add_image_btn">Adicionar Imagem</string>
     <string name="remove_image_btn">Remover Imagem</string>

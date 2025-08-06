@@ -1,6 +1,7 @@
 package io.github.gxrj.janitory.domain.models;
 
 import io.github.gxrj.janitory.domain.builders.AddressBuilder;
+import io.github.gxrj.janitory.domain.exceptions.NotValidAddressException;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -22,14 +23,32 @@ public class Address {
                 .build();
     }
 
-    public String toPlanJson() {
+    public String toPlanJson() throws NotValidAddressException {
+
+        pubPlace = pubPlace == null ? "" : pubPlace;
+
+        if( pubPlace.isBlank() || district.equals( "Bairro" ) )
+            throw new NotValidAddressException( "Campos \"logradouro\" e \"bairro\" são obrigatórios" );
+
         return "{" +
-                "\"zip_code\":\""+ zipCode +"\","+
+                "\"district\":\""+ district +"\","+
                 "\"pub_place\":\""+ pubPlace +"\","+
-                "\"number\":\""+ number +"\","+
-                "\"reference\":\""+ reference +"\","+
-                "\"district\":\""+ district +"\""+
+                checkNumber()+
+                checkReference()+
+                checkZipCode()+
                 "}";
+    }
+
+    private String checkZipCode() {
+        return zipCode != null ? "\"zip_code\":\""+ zipCode +"\"," : "";
+    }
+
+    private String checkNumber() {
+        return number != null ? "\"number\":\""+ number +"\"," : "s/n";
+    }
+
+    private String checkReference() {
+        return reference != null ? "\"reference\":\""+ reference +"\"," : "";
     }
 
     public void setZipCode( String zipCode ) { this.zipCode = zipCode; }

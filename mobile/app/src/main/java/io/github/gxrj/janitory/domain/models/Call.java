@@ -1,6 +1,7 @@
 package io.github.gxrj.janitory.domain.models;
 
 import android.graphics.Bitmap;
+import io.github.gxrj.janitory.domain.exceptions.NotValidFormException;
 import io.github.gxrj.janitory.utils.ImageParser;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -28,11 +29,18 @@ public class Call {
                 .image( ImageParser.toBitmap( json.getString( "image" ) ) )
                 .build();
     }
-    public String toPlainJson() {
+    public String toPlainJson() throws NotValidFormException {
+
+        //This was made just to check Address before Description...
+        // ...address.toPlainJson() could be concatenated directly with the returned string
+        String validAddress = address.toPlanJson();
+
+        if( description.isBlank() )
+            throw new NotValidFormException( "Campo \"descrição\" é obrigatório" );
 
         return "{\"duty\":\""+ duty +"\"," +
-                "\"address\":"+ address.toPlanJson() +"," +
-                "\"description\":\""+ description +"\"," +
+                "\"address\":"+ validAddress +"," +
+                "\"description\":\""+ description +"\","+
                 checkStatus() +
                 checkAuthor() +
                 checkProtocol() +

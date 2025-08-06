@@ -15,8 +15,10 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts.GetContent;
 import androidx.appcompat.app.AppCompatActivity;
 
+import io.github.gxrj.janitory.data.providers.WebClient;
 import io.github.gxrj.janitory.domain.builders.AddressBuilder;
 import io.github.gxrj.janitory.domain.builders.CallBuilder;
+import io.github.gxrj.janitory.domain.exceptions.NotValidFormException;
 import io.github.gxrj.janitory.domain.models.Address;
 import io.github.gxrj.janitory.domain.models.Call;
 import io.github.gxrj.janitory.domain.models.Citizen;
@@ -30,6 +32,7 @@ import java.util.List;
 
 import io.github.gxrj.janitory.R;
 import io.github.gxrj.janitory.domain.models.District;
+import org.json.JSONObject;
 
 public class CallFormActivity extends AppCompatActivity {
 
@@ -65,7 +68,7 @@ public class CallFormActivity extends AppCompatActivity {
     private void bindDistrictList() {
         String plainDistricts = getData().getString( "districts" );
 
-        try{
+        try {
             districts = District.fromJsonArray( new JSONArray( plainDistricts ) );
         }
         catch( JSONException e ) {
@@ -98,7 +101,7 @@ public class CallFormActivity extends AppCompatActivity {
 
         removeImageBtn.setOnClickListener( view -> removeImage() );
 
-        sendFormBtn.setOnClickListener( view -> sendForm() );
+        sendFormBtn.setOnClickListener( view -> confirmFormSend() );
 
         districtDropdownList.setOnClickListener( view -> districtsDialog.show() );
     }
@@ -107,14 +110,11 @@ public class CallFormActivity extends AppCompatActivity {
         return ( dialog, index ) -> {
             String item = districtDropdownList.getText().toString();
 
-            if( item.equals( "Bairro" ) ) index = 0;
+            if( index > -1 )
+                districtDropdownList.setText( districts.get( index ).toString() );
+            else if( item.equals( "Bairro" ) )
+                districtDropdownList.setText( districts.get( 0 ).toString() );
 
-            if( index < 0 ) {
-                dialog.dismiss();
-                return;
-            }
-
-            districtDropdownList.setText( districts.get( index ).toString() );
             dialog.dismiss();
         };
     }
@@ -161,10 +161,23 @@ public class CallFormActivity extends AppCompatActivity {
         removeImageBtn.setVisibility( View.GONE );
     }
 
-    private void sendForm() {
-        String requestBody = buildCall().toPlainJson();
-        //Todo: add dialog to ask whether the user whats to send the form data
-        //Todo: start automated tests and ui tests
+    private void confirmFormSend() {
+        AlertDialog.Builder builder = new AlertDialog.Builder( this );
+        try {
+            String requestBody = buildCall().toPlainJson();
+            builder.setTitle( "Confirmar envio" );
+            builder.setMessage( "Deseja enviar o formulário?" );
+            builder.setPositiveButton( "Confirmar",
+                    ( dialog, index ) -> sendForm( requestBody ) );
+            builder.setNeutralButton( "Cancelar", null );
+        }
+        catch ( NotValidFormException formException ) {
+            builder.setTitle( "Formulário inválido!" );
+            builder.setMessage( formException.getMessage() + "\nPor favor preencha os campos exigidos" );
+            builder.setNeutralButton( "Ok", null );
+        }
+
+        builder.create().show();
     }
 
     private Call buildCall() {
@@ -206,5 +219,35 @@ public class CallFormActivity extends AppCompatActivity {
     private Citizen buildAuthor() {
         //Todo: check whether the author is anonymous or not, if not build author
         return null;
+    }
+
+    private void sendForm( String requestBody ) {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder( this );
+
+        builder.setTitle( "Objeto a enviar" );
+        builder.setMessage( requestBody );
+        builder.setPositiveButton( "Ok", null );
+        /**
+        WebClient.callApi(
+                "post", "Todo: put server endpoint here",
+                processRequest( requestBody ),
+                this,
+                json -> builder.setMessage( json.toString() ),
+                error -> builder.setMessage( error.toString() ) );
+        */
+        //Todo: start automated tests and ui tests
+        //Todo: improve image handling performance
+        builder.create().show();
+    }
+
+    private JSONObject processRequest( String requestBody ) {
+        try {
+            return new JSONObject( requestBody );
+        }
+        catch ( JSONException e ) {
+            Log.e( "Error: ", e.getMessage() );
+            return null;
+        }
     }
 }
