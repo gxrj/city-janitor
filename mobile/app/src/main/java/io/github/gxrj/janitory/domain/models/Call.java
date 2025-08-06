@@ -29,14 +29,32 @@ public class Call {
                 .build();
     }
     public String toPlainJson() {
-        return "{\"status\": \""+ status +"\"," +
-                 "\"author\":"+ author.toPlainJson() +"," +
-                 "\"address\":"+ address.toPlanJson() +"," +
-                 "\"duty\":\""+ duty +"\"," +
-                 "\"description\":\""+ description +"\"," +
-                 "\"protocol\":\""+ protocol +"\"," +
-                 "\"image\":\""+ ImageParser.stringify( image ) +"\" }";
+
+        return "{\"duty\":\""+ duty +"\"," +
+                "\"address\":"+ address.toPlanJson() +"," +
+                "\"description\":\""+ description +"\"," +
+                checkStatus() +
+                checkAuthor() +
+                checkProtocol() +
+                checkImage() +"}";
     }
+
+    private String checkStatus() {
+        return status != null ? "\"status\": \""+ status +"\"," : "";
+    }
+
+    private String checkAuthor() {
+        return author != null ? "\"author\":"+ author.toPlainJson() +",": "";
+    }
+
+    private String checkProtocol() {
+        return protocol != null ? "\"protocol\":\""+ protocol +"\"," : "";
+    }
+
+    private String checkImage() {
+        return image != null ? "\"image\":\""+ ImageParser.stringify( image ) +"\"" : "";
+    }
+
     public void setStatus( String status ) { this.status = status; }
     public void setAuthor( Citizen author ) { this.author = author; }
     public void setAddress( Address address ) { this.address = address; }

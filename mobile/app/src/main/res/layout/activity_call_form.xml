@@ -189,7 +189,7 @@
                 android:layout_weight="8"
                 android:layout_height="0dp"
                 android:inputType="textMultiLine"
-                android:background="@drawable/block_text"
+                android:background="@drawable/edit_text_border"
                 android:lines="6"
                 android:textSize="22sp"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -248,7 +248,6 @@
             android:layout_marginVertical="5sp"
             android:layout_marginHorizontal="15sp"
             android:textSize="25sp"
-            android:enabled="false"
             android:backgroundTint="#2A68AA"
             android:text="@string/send_form_btn"
             android:layout_weight="1"/>

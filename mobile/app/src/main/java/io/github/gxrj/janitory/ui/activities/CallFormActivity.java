@@ -136,7 +136,7 @@ public class CallFormActivity extends AppCompatActivity {
 
     private void sendForm() {
         String requestBody = buildCall().toPlainJson();
-        //Todo: add events to enable sendFormBtn
+        //Todo: add dialog to ask whether the user whats to send the form data
         //Todo: start automated tests and ui tests
     }
 
